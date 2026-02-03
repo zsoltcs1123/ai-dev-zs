@@ -9,7 +9,7 @@ fi
 SKILL_NAME="$1"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_PATH="$SCRIPT_DIR/../skills/$SKILL_NAME"
-TARGET_PATH="$HOME/.cursor/skills-cursor/$SKILL_NAME"
+TARGET_PATH="$HOME/.cursor/skills/$SKILL_NAME"
 
 if [ ! -d "$SOURCE_PATH" ]; then
     echo "Error: Skill not found: $SOURCE_PATH" >&2

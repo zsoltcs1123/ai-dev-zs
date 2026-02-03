@@ -4,7 +4,7 @@ param(
 )
 
 $SourcePath = Join-Path $PSScriptRoot "..\skills\$SkillName"
-$TargetPath = Join-Path $env:USERPROFILE ".cursor\skills-cursor\$SkillName"
+$TargetPath = Join-Path $env:USERPROFILE ".cursor\skills\$SkillName"
 
 if (-not (Test-Path $SourcePath)) {
     Write-Error "Skill not found: $SourcePath"

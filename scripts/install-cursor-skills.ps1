@@ -1,5 +1,5 @@
 $SkillsPath = Join-Path $PSScriptRoot "..\skills"
-$TargetBase = Join-Path $env:USERPROFILE ".cursor\skills-cursor"
+$TargetBase = Join-Path $env:USERPROFILE ".cursor\skills"
 
 if (-not (Test-Path $SkillsPath)) {
     Write-Error "Skills directory not found: $SkillsPath"

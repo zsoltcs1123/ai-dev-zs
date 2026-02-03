@@ -3,7 +3,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILLS_PATH="$SCRIPT_DIR/../skills"
-TARGET_BASE="$HOME/.cursor/skills-cursor"
+TARGET_BASE="$HOME/.cursor/skills"
 
 if [ ! -d "$SKILLS_PATH" ]; then
     echo "Error: Skills directory not found: $SKILLS_PATH" >&2
