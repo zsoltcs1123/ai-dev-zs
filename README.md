@@ -6,20 +6,33 @@ Collection of reusable AI development tools: skills, subagents, prompts, and rel
 
 ```
 skills/          # Agent skills (reusable instruction sets)
+scripts/         # Installation scripts
 subagents/       # Specialized subagent definitions
 prompts/         # Prompt templates
 ```
 
 ## Install
 
-**Cursor skill:**
+### Windows (PowerShell)
 
 ```powershell
-.\install-cursor-skill.ps1 -SkillName project-planner
+# Single skill
+.\scripts\install-cursor-skill.ps1 -SkillName project-planner
+
+# All skills
+.\scripts\install-cursor-skills.ps1
+```
+
+### Linux/macOS (Bash)
+
+```bash
+# Single skill
+./scripts/install-cursor-skill.sh project-planner
+
+# All skills
+./scripts/install-cursor-skills.sh
 ```
 
 ## Skills
 
-### project-planner
-
-Guides through creating project planning documents (FOUNDATION.md, ARCHITECTURE.md, ROADMAP.md, EVALUATION.md).
+See [skills/INDEX.md](./skills/INDEX.md) for the full list.

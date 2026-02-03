@@ -3,7 +3,7 @@ param(
     [string]$SkillName
 )
 
-$SourcePath = Join-Path $PSScriptRoot "skills\$SkillName"
+$SourcePath = Join-Path $PSScriptRoot "..\skills\$SkillName"
 $TargetPath = Join-Path $env:USERPROFILE ".cursor\skills-cursor\$SkillName"
 
 if (-not (Test-Path $SourcePath)) {
