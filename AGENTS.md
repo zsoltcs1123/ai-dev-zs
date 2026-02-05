@@ -27,6 +27,5 @@ Support creation of:
 
 ## Key Files
 
-- `agentic-dev-system.md` — Full architecture and design
 - `skills/INDEX.md` — Skill catalog
 - `workspace/` — Temporary files, load on demand only

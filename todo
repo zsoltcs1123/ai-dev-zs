@@ -1,0 +1,7 @@
+- codebase-explorer: split into exploration and assessment. exploration covers neutral info (facts), assessment is a honest opinionated review about the codebase status and its problems. what kind of problems? infer from idx
+- maybe rename codebase-explorer to codebase-analyzer
+- naming conventions for skills:
+  - codebase-explorer or codebase-exploration or explore-codebase??
+- project-planner: extend into a create a new skill for product planning. this is for any digital product, which might include apps, websites or automations or other technical components, but typically less complex that full-on software. maybe it can be extended who knows
+  - project-planner -> software-planner: plan software projects
+  - product-planner: plan digital products
