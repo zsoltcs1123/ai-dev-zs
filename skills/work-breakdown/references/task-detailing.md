@@ -49,13 +49,14 @@ If a task exceeds the 7-step ceiling (defined in SKILL.md), split it along a nat
 
 Return to identification (Step 2) to insert the new tasks in the correct position.
 
-### 3. Set Acceptance Criteria
+### 3. Define Acceptance Criteria
 
-Define "done when" for the task. Criteria should be:
+Consolidate the task's objectives into a short bullet list of verifiable outcomes. Criteria should be:
 
 - Observable (can be tested or demonstrated)
 - Specific (not "works correctly" but "returns 200 for valid input, 401 for expired tokens")
 - Complete (covers the task's full scope, including error cases when relevant)
+- **Not a restatement of the implementation steps** — criteria describe *what success looks like*, not *how to get there*
 
 ### 4. Record Dependencies
 
@@ -69,21 +70,21 @@ Note which prior tasks this one depends on. Use task numbers from the identifica
 ### Task 1: Create password reset token model
 Add a database model to store reset tokens with expiry and user reference.
 
-Done when: Migration runs, model is queryable, tokens auto-expire.
-Depends on: None
-
 Steps:
 1. Define the token schema (user FK, token hash, expires_at, used flag)
 2. Create and run the migration
 3. Add model-level validation and expiry check method
 
+Acceptance criteria:
+- Migration runs and model is queryable
+- Expired tokens are identifiable without application logic
+
+Depends on: None
+
 ---
 
 ### Task 2: Implement reset request endpoint
 Endpoint accepts an email, generates a token, and queues a notification.
-
-Done when: POST /reset-password returns 200 for valid and invalid emails (no user enumeration), token is persisted.
-Depends on: 1
 
 Steps:
 1. Create the route and controller
@@ -91,19 +92,29 @@ Steps:
 3. Queue email notification with reset link
 4. Ensure response is identical for existing and non-existing emails
 
+Acceptance criteria:
+- POST /reset-password returns 200 regardless of whether the email exists
+- Valid email produces a persisted token and a queued notification
+
+Depends on: 1
+
 ---
 
 ### Task 3: Implement reset confirmation endpoint
 Endpoint accepts token and new password, validates, and updates the password.
-
-Done when: Valid token + password updates the user, expired/used tokens are rejected.
-Depends on: 1
 
 Steps:
 1. Create the route and controller
 2. Validate token (exists, not expired, not used)
 3. Update user password and mark token as used
 4. Invalidate any other active tokens for the user
+
+Acceptance criteria:
+- Valid token + new password updates the user's password
+- Expired or used tokens return an error
+- All other active tokens for the user are invalidated after a successful reset
+
+Depends on: 1
 ```
 
 ### Anti-example: Too coarse
@@ -112,7 +123,8 @@ Steps:
 ### Task 1: Implement password reset
 Build the full password reset flow.
 
-Done when: Users can reset their password via email.
+Acceptance criteria:
+- Users can reset their password via email
 ```
 
 Problem: combines data modeling, two endpoints, email integration, and security concerns. Cannot be completed or reviewed as a focused unit.

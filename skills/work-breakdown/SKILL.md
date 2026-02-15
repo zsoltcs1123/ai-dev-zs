@@ -3,7 +3,7 @@ name: work-breakdown
 description: Breaks a unit of work into executable, right-sized tasks with logical ordering. Use when the user wants to decompose work into tasks, says "break this down", "create tasks/issues", "what needs to be done for this", or provides a feature/epic/phase to decompose.
 metadata:
   author: zs
-  version: "2.2"
+  version: "1.0"
 ---
 
 # Work Breakdown
@@ -80,71 +80,48 @@ Load and follow [references/task-detailing.md](references/task-detailing.md).
 
 - **The 7-step ceiling:** if a task needs more than 7 implementation steps, it's too large — split it, return to Step 2 to reorder, and confirm again (Step 3)
 - Each step must be a specific, verifiable action
-- Acceptance criteria must be observable and specific
+- Acceptance criteria must be observable, specific, and consolidate task objectives — not restate implementation steps
 
 ## Step 5: Output
-
-**Default:** Structured list in chat.
-**On request:** Output as a markdown document.
 
 Each task includes:
 
 - **Title** — concise, imperative verb
 - **Description** — what and why (1-3 sentences)
-- **Acceptance criteria** — when is this done?
+- **Steps** — 5-7 max concrete actions
+- **Acceptance criteria** — bullet list of verifiable outcomes (not a restatement of the steps)
 - **Dependencies** — which prior tasks, if any
-- **Implementation steps** — 5-7 max
-
-### Chat Format (default)
 
 ```
-### Task 1: [Imperative title]
-[1-3 sentence description]
-
-**Done when:** [acceptance criteria]
-**Depends on:** [task numbers or "None"]
-
-**Steps:**
-1. [concrete action]
-2. [concrete action]
-3. [concrete action]
-
----
-
-### Task 2: [Imperative title]
-...
-```
-
-### Document Format (on request)
-
-```markdown
 # Work Breakdown: [Work Title]
 
-## Overview
-[1-2 sentences: what this work delivers and how many tasks it breaks into]
+## Summary
+[1-2 sentences: what this work delivers]
+
+| # | Task | Depends On |
+| --- | --- | --- |
+| 1 | [title] | None |
+| 2 | [title] | 1 |
+| 3 | [title] | 1, 2 |
 
 ## Tasks
 
 ### 1. [Imperative title]
 [1-3 sentence description]
 
-**Done when:** [acceptance criteria]
-**Depends on:** [task numbers or "None"]
-
 **Steps:**
 1. [concrete action]
 2. [concrete action]
 3. [concrete action]
 
+**Acceptance criteria:**
+- [verifiable criterion]
+- [verifiable criterion]
+
+**Depends on:** [task numbers or "None"]
+
 ---
 
 ### 2. [Imperative title]
 ...
-
-## Summary
-| # | Task | Depends On |
-| --- | --- | --- |
-| 1 | [title] | None |
-| 2 | [title] | 1 |
-| 3 | [title] | 1, 2 |
 ```
