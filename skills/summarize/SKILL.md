@@ -16,7 +16,8 @@ Extract a structured summary from any input. Output to chat by default. Write to
 2. Identify: core argument, key learnings, anything actionable, open questions, and sequential processes.
 3. Produce output using the template below. Stay under 100 lines total.
 4. Be concise and specific. No filler, no fluff, no AI-isms.
-5. Omit optional sections entirely if nothing qualifies (don't include empty headings).
+5. Do not miss important information from the source.
+6. Omit optional sections entirely if nothing qualifies (don't include empty headings).
 
 ## Edge Cases
 
@@ -53,19 +54,19 @@ Author: [Name, Affiliation]
 
 ---
 
-## Further Investigation
-
-- [Question or topic raised that deserves deeper research]
-- ...
-
----
-
 ## [Process/Workflow Title]
 
 | Phase      | What | Why |
 | ---------- | ---- | --- |
 | **1. ...** | ...  | ... |
 | **2. ...** | ...  | ... |
+
+---
+
+## Further Investigation
+
+- [Question or topic raised that deserves deeper research]
+- ...
 ```
 
 ### Section Rules
@@ -75,5 +76,5 @@ Author: [Name, Affiliation]
 | Title + Source + Summary | Yes      | Always                           |
 | Key Learnings            | Yes      | Always (minimum 3)               |
 | Actionable Takeaways     | No       | Present or inferable from source |
-| Further Investigation    | No       | Present or inferable from source |
 | Step-by-Step Process     | No       | Present or inferable from source |
+| Further Investigation    | No       | Present or inferable from source |
