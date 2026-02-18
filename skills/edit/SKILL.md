@@ -42,7 +42,7 @@ Check these three dimensions:
 
 **Completeness & clarity** — note gaps, ambiguities, or areas where the argument is weak. Suggest additions only if they would meaningfully improve the piece.
 
-**AI writing signs** — scan for patterns that signal AI-generated text. Load the full checklist from `references/ai-writing-signs.md`. Report each detected pattern with its location and the specific checklist item number. Do not rewrite — flag only.
+**AI writing signs** — scan for patterns that signal AI-generated text. Load the full checklist from [references/ai-writing-signs.md](references/ai-writing-signs.md). Report each detected pattern with its location and the specific checklist item number. Do not rewrite — flag only.
 
 ## Output Template
 
