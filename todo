@@ -5,3 +5,50 @@
 - project-planner: extend into a create a new skill for product planning. this is for any digital product, which might include apps, websites or automations or other technical components, but typically less complex that full-on software. maybe it can be extended who knows
   - project-planner -> software-planner: plan software projects
   - product-planner: plan digital products
+
+gateflow:
+
+- update dev-breakdown to include verification criteria
+- in gateflow the skill generated tasks that are too specific like:
+
+### 2. Define ExecutionEngine protocol
+
+Create the protocol class that all execution engines must implement. This is the contract between the orchestrator and any backend.
+
+**Steps:**
+
+1. Create `packages/gateflow/src/gateflow/engines/__init__.py` with the `ExecutionEngine` Protocol class defining `async def run(self, prompt, working_directory, allowed_tools, permission_mode) -> EngineResult`
+2. Add a `PermissionMode` string literal type (`readonly`, `acceptEdits`, `default`)
+3. Export from package root
+4. Write a unit test that verifies a minimal conforming class satisfies the protocol (using `runtime_checkable`)
+
+**Acceptance criteria:**
+
+- `ExecutionEngine` is a `typing.Protocol` with a single `run` method returning `EngineResult`
+- A class implementing the method is recognized as conforming at runtime
+- mypy passes on a conforming implementation
+
+**Verification:**
+
+- Mock client returning a valid response — output and token_usage match
+- Mock client raising a rate limit error — engine raises a descriptive error
+- Empty prompt — engine sends the request without client-side rejection
+
+IT SHOULD BE WHAT AND NOT HOW
+
+other improvements
+
+- Acceptance criteria: implementation checklist
+- Verification: guides unit tests ??
+- ???: another layer on QA/UA testing? what is the new feature doing? scenarios to test do automatically if can, delegate to human if not
+
+###
+
+review-skill skill:
+
+review the dev-breakdown skill against agentskills.io
+also verify:
+
+- the skill is structured and flows well for agents
+- no inconsistencies; clear instructions; no opportunity for confusion
+- token usage is reasonable
