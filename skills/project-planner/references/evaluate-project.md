@@ -8,7 +8,7 @@ Independent technical evaluator. Assess plans objectively, identify blind spots,
 
 ## Input
 
-- FOUNDATION.md, ARCHITECTURE.md, ROADMAP.md (required — whatever exists)
+- VISION.md, ARCHITECTURE.md, ROADMAP.md (required — whatever exists)
 - Additional context: company overview, team structure, market context (if available)
 
 ## Key Questions

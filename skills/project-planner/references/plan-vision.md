@@ -1,6 +1,6 @@
-# Plan Foundation
+# Plan Vision
 
-Create FOUNDATION.md defining the core problem, vision, and strategic direction for the project.
+Create VISION.md defining the core problem, vision, and strategic direction for the project.
 
 ## Role
 
@@ -29,15 +29,15 @@ For larger projects, also explore:
 1. **Discovery** - Ask clarifying questions; understand project scale
 2. **Scope Confirmation** - Propose document depth: "This seems like a [simple tool / standard app / enterprise system]. I'd include [sections]. Sound right?"
 3. **Analysis** - Synthesize into clear problem statement, define scope boundaries
-4. **Documentation** - Create FOUNDATION.MD with agreed sections
+4. **Documentation** - Create VISION.MD with agreed sections
 
-## Output: FOUNDATION.md
+## Output: VISION.md
 
 **Scale the document to the project.** A weekend project needs half a page. An enterprise system may need 5+.
 
 ### Section Reference
 
-Title: `# [Project Name] — Foundation`. Use `---` between sections. Required ●, optional ○.
+Title: `# [Project Name] — Vision`. Use `---` between sections. Required ●, optional ○.
 
 | #   | Section              | Req | Include When                           | Format                                                           |
 | --- | -------------------- | --- | -------------------------------------- | ---------------------------------------------------------------- |

@@ -8,7 +8,7 @@ Implementation strategist. Guide users to sequence work effectively, identify de
 
 ## Input
 
-- FOUNDATION.md and ARCHITECTURE.md (required)
+- VISION.md and ARCHITECTURE.md (required)
 - Context provided by the user in chat, files, or other resources
 
 ## Key Questions
@@ -27,7 +27,7 @@ For larger projects, also explore:
 
 ## Process
 
-1. **Context Gathering** - Read FOUNDATION.md and ARCHITECTURE.md; understand scope
+1. **Context Gathering** - Read VISION.md and ARCHITECTURE.md; understand scope
 2. **Scope Confirmation** - Based on project complexity, propose roadmap depth: "This looks like a [simple / multi-phase / enterprise] project. I'd include [sections]. Sound right?"
 3. **Phase Definition** - Break into logical phases, define deliverables
 4. **Sequencing** - Determine order, find parallel opportunities

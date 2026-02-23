@@ -1,9 +1,9 @@
 ---
 name: project-planner
-description: Guide users through creating project planning documents (FOUNDATION.md, ARCHITECTURE.md, ROADMAP.md, EVALUATION.md). Use when: planning a new project, defining architecture, creating roadmaps, evaluating feasibility, writing technical specs, or when user mentions "foundation doc", "architecture doc", "roadmap", or "project evaluation".
+description: Guide users through creating project planning documents (VISION.md, ARCHITECTURE.md, ROADMAP.md, EVALUATION.md). Use when: planning a new project, defining architecture, creating roadmaps, evaluating feasibility, writing technical specs, or when user mentions "vision doc", "architecture doc", "roadmap", or "project evaluation".
 metadata:
   author: zs
-  version: "1.4"
+  version: "1.5"
 ---
 
 # Project Planner
@@ -16,9 +16,9 @@ Determine user intent and route to the appropriate workflow:
 
 | User Intent                    | Action                                                                            |
 | ------------------------------ | --------------------------------------------------------------------------------- |
-| "Start planning a new project" | → Create Foundation                                                               |
-| "Design the architecture"      | → Create Architecture (requires FOUNDATION.md)                                    |
-| "Create a roadmap"             | → Create Roadmap (requires FOUNDATION.md + ARCHITECTURE.md)                       |
+| "Start planning a new project" | → Create Vision                                                                   |
+| "Design the architecture"      | → Create Architecture (requires VISION.md)                                        |
+| "Create a roadmap"             | → Create Roadmap (requires VISION.md + ARCHITECTURE.md)                           |
 | "Evaluate/review this project" | → Evaluate                                                                        |
 | "Update [document]"            | → Update                                                                          |
 | Unclear intent                 | Ask: "Do you want to **create**, **update**, or **evaluate** planning documents?" |
@@ -27,16 +27,16 @@ Determine user intent and route to the appropriate workflow:
 
 | Document        | Purpose                                                    | Prerequisites                  |
 | --------------- | ---------------------------------------------------------- | ------------------------------ |
-| FOUNDATION.md   | Problem, vision, constraints, success criteria             | None                           |
-| ARCHITECTURE.md | Technical structure, components, data models, tech choices | FOUNDATION.md                  |
-| ROADMAP.md      | Phased implementation plan                                 | FOUNDATION.md, ARCHITECTURE.md |
+| VISION.md       | Problem, vision, constraints, success criteria             | None                           |
+| ARCHITECTURE.md | Technical structure, components, data models, tech choices | VISION.md                      |
+| ROADMAP.md      | Phased implementation plan                                 | VISION.md, ARCHITECTURE.md     |
 | EVALUATION.md   | Independent feasibility assessment                         | All planning docs              |
 
 ## Workflows
 
 ### Create
 
-**Sequence matters.** Create documents in order: FOUNDATION → ARCHITECTURE → ROADMAP.
+**Sequence matters.** Create documents in order: VISION → ARCHITECTURE → ROADMAP.
 
 For each document:
 
@@ -45,7 +45,7 @@ For each document:
 
 | Document        | Reference                                                          |
 | --------------- | ------------------------------------------------------------------ |
-| FOUNDATION.md   | [references/plan-foundation.md](references/plan-foundation.md)     |
+| VISION.md       | [references/plan-vision.md](references/plan-vision.md)             |
 | ARCHITECTURE.md | [references/plan-architecture.md](references/plan-architecture.md) |
 | ROADMAP.md      | [references/plan-roadmap.md](references/plan-roadmap.md)           |
 
@@ -53,7 +53,7 @@ For each document:
 
 Independent assessment of project feasibility and risks.
 
-1. Load all existing planning documents (FOUNDATION.md, ARCHITECTURE.md, ROADMAP.md)
+1. Load all existing planning documents (VISION.md, ARCHITECTURE.md, ROADMAP.md)
 2. Read [references/evaluate-project.md](references/evaluate-project.md) and follow its instructions
 3. Output EVALUATION.md with Version History section
 
