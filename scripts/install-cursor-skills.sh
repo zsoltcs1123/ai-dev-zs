@@ -13,20 +13,16 @@ fi
 mkdir -p "$TARGET_BASE"
 
 count=0
-for skill_dir in "$SKILLS_PATH"/*/; do
-    if [ -d "$skill_dir" ]; then
-        skill_name=$(basename "$skill_dir")
-        target_path="$TARGET_BASE/$skill_name"
-        
-        if [ -d "$target_path" ]; then
-            rm -rf "$target_path"
-        fi
-        
-        cp -r "$skill_dir" "$target_path"
-        echo "Installed '$skill_name' to $target_path"
-        ((count++))
-    fi
-done
+while IFS= read -r skill_file; do
+    skill_dir="$(dirname "$skill_file")"
+    skill_name="$(basename "$skill_dir")"
+    target_path="$TARGET_BASE/$skill_name"
+
+    mkdir -p "$target_path"
+    cp -r "$skill_dir/." "$target_path/"
+    echo "Installed '$skill_name' to $target_path"
+    ((count++))
+done < <(find "$SKILLS_PATH" -name "SKILL.md" -type f)
 
 echo ""
 echo "Installed $count skill(s)"

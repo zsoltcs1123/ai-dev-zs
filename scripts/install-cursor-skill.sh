@@ -8,19 +8,16 @@ fi
 
 SKILL_NAME="$1"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SOURCE_PATH="$SCRIPT_DIR/../skills/$SKILL_NAME"
+SKILLS_PATH="$SCRIPT_DIR/../skills"
 TARGET_PATH="$HOME/.cursor/skills/$SKILL_NAME"
 
-if [ ! -d "$SOURCE_PATH" ]; then
-    echo "Error: Skill not found: $SOURCE_PATH" >&2
+SOURCE_PATH="$(find "$SKILLS_PATH" -type f -name "SKILL.md" -path "*/$SKILL_NAME/SKILL.md" -print -quit | xargs dirname 2>/dev/null)"
+
+if [ -z "$SOURCE_PATH" ] || [ ! -d "$SOURCE_PATH" ]; then
+    echo "Error: Skill not found: $SKILL_NAME" >&2
     exit 1
 fi
 
-mkdir -p "$(dirname "$TARGET_PATH")"
-
-if [ -d "$TARGET_PATH" ]; then
-    rm -rf "$TARGET_PATH"
-fi
-
-cp -r "$SOURCE_PATH" "$TARGET_PATH"
+mkdir -p "$TARGET_PATH"
+cp -r "$SOURCE_PATH/." "$TARGET_PATH/"
 echo "Installed '$SKILL_NAME' to $TARGET_PATH"

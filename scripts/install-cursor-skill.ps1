@@ -3,17 +3,20 @@ param(
     [string]$SkillName
 )
 
-$SourcePath = Join-Path $PSScriptRoot "..\skills\$SkillName"
+$SkillsPath = Join-Path $PSScriptRoot "..\skills"
 $TargetPath = Join-Path $env:USERPROFILE ".cursor\skills\$SkillName"
 
-if (-not (Test-Path $SourcePath)) {
-    Write-Error "Skill not found: $SourcePath"
+$SkillFile = Get-ChildItem -Path $SkillsPath -Recurse -Filter "SKILL.md" |
+    Where-Object { $_.Directory.Name -eq $SkillName } |
+    Select-Object -First 1
+
+if (-not $SkillFile) {
+    Write-Error "Skill not found: $SkillName"
     exit 1
 }
 
-if (Test-Path $TargetPath) {
-    Remove-Item -Path $TargetPath -Recurse -Force
-}
+$SourcePath = $SkillFile.Directory.FullName
 
-Copy-Item -Path $SourcePath -Destination $TargetPath -Recurse
+New-Item -ItemType Directory -Force -Path $TargetPath | Out-Null
+Copy-Item -Path (Join-Path $SourcePath '*') -Destination $TargetPath -Recurse -Force
 Write-Host "Installed '$SkillName' to $TargetPath"

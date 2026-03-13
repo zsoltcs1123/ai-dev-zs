@@ -6,22 +6,21 @@ if (-not (Test-Path $SkillsPath)) {
     exit 1
 }
 
-$Skills = Get-ChildItem -Path $SkillsPath -Directory
+$SkillFiles = Get-ChildItem -Path $SkillsPath -Recurse -Filter "SKILL.md"
 
-if ($Skills.Count -eq 0) {
+if ($SkillFiles.Count -eq 0) {
     Write-Host "No skills found in $SkillsPath"
     exit 0
 }
 
-foreach ($Skill in $Skills) {
-    $TargetPath = Join-Path $TargetBase $Skill.Name
-    
-    if (Test-Path $TargetPath) {
-        Remove-Item -Path $TargetPath -Recurse -Force
-    }
-    
-    Copy-Item -Path $Skill.FullName -Destination $TargetPath -Recurse
-    Write-Host "Installed '$($Skill.Name)' to $TargetPath"
+foreach ($SkillFile in $SkillFiles) {
+    $SkillDir = $SkillFile.Directory
+    $SkillName = $SkillDir.Name
+    $TargetPath = Join-Path $TargetBase $SkillName
+
+    New-Item -ItemType Directory -Force -Path $TargetPath | Out-Null
+    Copy-Item -Path (Join-Path $SkillDir.FullName '*') -Destination $TargetPath -Recurse -Force
+    Write-Host "Installed '$SkillName' to $TargetPath"
 }
 
-Write-Host "`nInstalled $($Skills.Count) skill(s)"
+Write-Host "`nInstalled $($SkillFiles.Count) skill(s)"
