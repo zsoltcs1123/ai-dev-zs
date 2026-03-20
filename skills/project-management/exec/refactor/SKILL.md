@@ -83,14 +83,9 @@ Rate each finding on three axes:
 
 Sort by priority: highest-impact, lowest-effort first.
 
-Each finding must fit in **5 lines max**:
-- Line 1: what's wrong (one sentence) + where (`path`)
-- Line 2: brief context if needed (one sentence — skip if line 1 is self-explanatory)
-- Line 3: classification tags
-- Line 4: what to do about it (one sentence — no code, no paragraphs)
-- Line 5: blank separator
+This is a scan report, not an implementation plan. No code samples — those belong in the implementation phase. But don't over-compress: give enough context in the description to understand the problem without reading the code, and enough in the recommendation to know the direction.
 
-This is a scan report, not an implementation plan. Keep it tight enough to discuss in conversation. Details and code samples belong in the implementation phase.
+Use horizontal rules, bold labels, and blank lines generously. Each finding should be easy to scan independently.
 
 ```markdown
 ## Refactor Analysis
@@ -99,11 +94,25 @@ This is a scan report, not an implementation plan. Keep it tight enough to discu
 
 {Scope, maturity, tech stack, overall health — 2-3 sentences.}
 
-### Findings
+---
 
-1. {One-sentence problem statement} — `{path(s)}`
-   **{Dimension}** · {Severity} · Effort {E} · Impact {I}
-   → {One-sentence fix direction}
+### 1. {Short title}
+
+**Dimension:** {Dimension}
+**Severity:** {Severity}
+**Effort:** {Effort} | **Impact:** {Impact}
+
+{What's wrong, where, and why it matters. Enough context to understand the problem without reading the code — a few sentences is fine.}
+
+**Recommendation:** {What to do about it. Be specific about the direction — name the pattern, the target structure, the end state.}
+
+---
+
+### 2. {Short title}
+
+...
+
+---
 
 ### Where to Start
 
