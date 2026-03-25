@@ -32,10 +32,10 @@ Follow the exploration checklist. For each indicator, record:
 
 **Exploration order:**
 
-1. **Orientation** — README, AGENTS.md or equivalent, top-level directory structure, package manager config (detect tech stack and project type)
-2. **Information surface** — docs/ hierarchy, specs, ADRs, agent instruction files, conventions, principles
-3. **Feedback surface** — pre-commit config, linter/formatter configs, type checking, test infrastructure (framework, count, ratio), CI/CD config (triggers, gates), e2e setup, observability
-4. **Constraint surface** — architectural enforcement tools, SAST config, dependency automation, security scanning, advisory-to-executable ratio
+1. **Orientation** — README, AGENTS.md or equivalent, top-level directory structure, package manager config (detect tech stack and project type). Determine skip logic (library vs. service, monorepo vs. single-app).
+2. **Information surface** — docs/ hierarchy, specs, ADRs, agent instruction files, conventions, principles, task discovery (issues/PRs), product analytics
+3. **Feedback surface** — pre-commit config, linter/formatter configs, type checking, test infrastructure (framework, count, ratio), CI/CD config (triggers, gates), e2e setup, observability, build & release system
+4. **Constraint surface** — architectural enforcement tools, SAST config, dependency automation, security scanning, secrets management, advisory-to-executable ratio
 
 For monorepos: distinguish repo-wide from app-scoped indicators.
 
@@ -47,10 +47,11 @@ For each surface:
 
 1. Assign a maturity level (Baseline, Functional, Standardized, Autonomous)
 2. Use transition notation when between levels (e.g., "Baseline → Functional")
-3. List **What's in place** — specific findings with evidence (tool names, file paths, config details, counts)
-4. List **Gaps** — specific missing items and their implications
+3. Write a 2-3 sentence **Overview** interpreting the findings — what's strong, what's weak, what it means for agent effectiveness
+4. Fill in the **Sub-check table** with pass/fail/skip status and one-line evidence for each sub-check from the exploration checklist
+5. Compute **pillar scores** (pass count / applicable count) for the Scorecard using the [Scorecard Pillar Mapping](references/exploration-checklist.md#scorecard-pillar-mapping) in the exploration checklist
 
-Be specific. Not "tests exist" but "33 test files: 12 unit, 21 integration, ~4,700 lines against ~3,800 lines of app code (>1:1 ratio)." Not "no SAST" but "only detect-secrets is configured; no injection or vulnerability scanning (Bandit, CodeQL, Semgrep, etc.)."
+Be specific in sub-check evidence. Not "tests exist" but "33 test files, ~4,700 lines against ~3,800 lines of app code." Not "no SAST" but "only detect-secrets configured; no CodeQL, Bandit, or Semgrep."
 
 ## Phase 3: Recommend
 
@@ -70,145 +71,6 @@ Then sequence deliverables into waves:
 - **Wave 2 — Structural improvements**: bounded implementation work (days, not weeks)
 - **Wave 3 — Infrastructure for scale**: matters when agent throughput increases
 
-## Progress Bars
-
-Use these exact bars in the Maturity Summary and After All Three Waves sections:
-
-| Level                     | Bar              |
-| ------------------------- | ---------------- |
-| Baseline                  | `████░░░░░░░░░░` |
-| Functional                | `██████░░░░░░░░` |
-| Functional → Standardized | `████████░░░░░░` |
-| Standardized              | `████████████░░` |
-| Autonomous                | `██████████████` |
-
-For transition levels (e.g., "Baseline → Functional"), use the bar of the lower level. Annotate the transition in the text label beside the bar.
-
 ## Output Template
 
-Follow this structure exactly:
-
-~~~markdown
-# [Project Name] — Agent Readiness Assessment
-
-[One-line description: what's being assessed, against what framework.]
-
-Context: [Tech stack / team size / project state — inferred from exploration.]
-
----
-
-## Current State
-
-### 1. Information Surface — [Maturity Level]
-
-**What's in place:**
-
-- [Specific finding with evidence]
-- ...
-
-**Gaps:**
-
-- [Specific gap with implication]
-- ...
-
-### 2. Feedback Surface — [Maturity Level]
-
-**What's in place:**
-
-- ...
-
-**Gaps:**
-
-- ...
-
-### 3. Constraint Surface — [Maturity Level]
-
-**What's in place:**
-
-- ...
-
-**Gaps:**
-
-- ...
-
----
-
-## Maturity Summary
-
-```
-Information [bar] [Level]
-Feedback    [bar] [Level]
-Constraints [bar] [Level]
-```
-
-[1-2 paragraph interpretation — what's strong, what's limiting agent effectiveness, where the biggest delta is.]
-
----
-
-## Path to Three-Surface Coverage
-
-Deliverables grouped by surface and ordered by impact. Each deliverable is scoped to be completable independently.
-
-### [Surface] Surface
-
-#### [ID]. [Title]
-
-**What:** [one paragraph]
-
-**Why:** [one paragraph]
-
-**Scope:** [effort estimate]
-
-[Repeat for each deliverable per surface]
-
----
-
-## Recommended Sequencing
-
-### Wave 1 — Fast wins ([timeframe])
-
-| #   | Deliverable | Surface | Effort |
-| --- | ----------- | ------- | ------ |
-| ... | ...         | ...     | ...    |
-
-[1-2 sentence summary of why these come first.]
-
-### Wave 2 — Structural improvements ([timeframe])
-
-| #   | Deliverable | Surface | Effort |
-| --- | ----------- | ------- | ------ |
-
-[1-2 sentence summary.]
-
-### Wave 3 — Infrastructure for scale
-
-| #   | Deliverable | Surface | Effort |
-| --- | ----------- | ------- | ------ |
-
-[1-2 sentence summary.]
-
----
-
-## After All Three Waves
-
-```
-Information [projected bar] [Projected Level]
-Feedback    [projected bar] [Projected Level]
-Constraints [projected bar] [Projected Level]
-```
-
-[Remaining gaps to full Autonomous — what's left and why it's acceptable for now.]
-~~~
-
-## Quality Checklist
-
-Before outputting the report, verify:
-
-- [ ] Every "What's in place" item cites specific evidence (file names, config flags, counts)
-- [ ] Every "Gap" item names what's missing and why it matters for agents
-- [ ] Maturity levels are consistent with the framework definitions
-- [ ] Progress bars match assigned maturity levels
-- [ ] Deliverables reference specific gaps from the assessment (not generic advice)
-- [ ] Wave sequencing puts config-only changes first, implementation work second
-- [ ] The "After All Three Waves" section shows realistic projected levels, not automatic full Autonomous
-- [ ] Report reads as specific to THIS repo, not a generic template
+Follow the output template in [references/output-template.md](references/output-template.md) exactly, including the progress bars defined there. Before outputting, verify against the quality checklist at the end of that file.

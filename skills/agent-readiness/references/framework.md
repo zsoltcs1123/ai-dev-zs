@@ -1,5 +1,14 @@
 # Three Surfaces of Agent-Ready Engineering
 
+## Dual Assessment Model
+
+This framework uses two complementary lenses:
+
+1. **Three Surfaces** (qualitative) — the organizing principle. Each surface answers a question about agent capability: Can it know? Can it verify? Can it be prevented from being wrong? Maturity levels (Baseline → Autonomous) are assigned per surface based on holistic judgment.
+2. **Sub-check scorecard** (quantitative) — binary pass/fail checks derived from [Factory's Agent Readiness criteria](https://factory.ai/news/agent-readiness), mapped into the Three Surfaces structure. Produces per-pillar scores and an overall percentage.
+
+The surfaces tell you *what matters and why*. The scorecard tells you *exactly what's present and what's missing*. Neither replaces the other.
+
 ## Core Thesis
 
 Agent performance is a function of the environment, not the model. A weaker model in a well-surfaced environment outperforms a stronger model in a poorly-surfaced one. Most teams try to improve agent output by switching models or tools — the leverage is in the surfaces: make more things knowable, verifiable, and enforceable.
