@@ -3,8 +3,11 @@ set -e
 
 usage() {
     echo "Usage: $0 [--wsl] [skill1 skill2 ...]"
-    echo "  --wsl          Install to Cursor on Windows (from within WSL)"
+    echo "  --wsl          Install to Codex on Windows (from within WSL)"
     echo "  skill1 ...     Install only the listed skills (default: all)"
+    echo ""
+    echo "Environment:"
+    echo "  CODEX_HOME     Override the Codex home directory (target is CODEX_HOME/skills)"
     exit 1
 }
 
@@ -28,15 +31,17 @@ if [ ! -d "$SKILLS_PATH" ]; then
     exit 1
 fi
 
-if $WSL; then
+if [ -n "${CODEX_HOME:-}" ]; then
+    TARGET_BASE="${CODEX_HOME%/}/skills"
+elif $WSL; then
     WIN_USER="$(cmd.exe /C "echo %USERNAME%" 2>/dev/null | tr -d '\r')"
     if [ -z "$WIN_USER" ]; then
         echo "Error: Could not determine Windows username" >&2
         exit 1
     fi
-    TARGET_BASE="/mnt/c/Users/$WIN_USER/.cursor/skills"
+    TARGET_BASE="/mnt/c/Users/$WIN_USER/.codex/skills"
 else
-    TARGET_BASE="$HOME/.cursor/skills"
+    TARGET_BASE="$HOME/.codex/skills"
 fi
 
 mkdir -p "$TARGET_BASE"

@@ -16,28 +16,44 @@ prompts/         # Prompt templates
 ### Windows (PowerShell)
 
 ```powershell
-# Single skill
-.\scripts\install-cursor-skill.ps1 -SkillName project-planner
+# Cursor: single skill
+.\scripts\install-cursor-skills.ps1 project-planner
 
-# All skills
+# Cursor: all skills
 .\scripts\install-cursor-skills.ps1
+
+# Codex: single skill
+.\scripts\install-codex-skills.ps1 -Skills project-planner
+
+# Codex: all skills
+.\scripts\install-codex-skills.ps1
 ```
 
 ### Linux/macOS (Bash)
 
 ```bash
-# Single skill
-./scripts/install-cursor-skill.sh project-planner
+# Cursor: single skill
+./scripts/install-cursor-skills.sh project-planner
 
-# All skills
+# Cursor: all skills
 ./scripts/install-cursor-skills.sh
+
+# Codex: single skill
+./scripts/install-codex-skills.sh project-planner
+
+# Codex: all skills
+./scripts/install-codex-skills.sh
 ```
 
 ## Skills
 
 See [skills/INDEX.md](./skills/INDEX.md) for the full list.
 
-Skills install flat into `~/.cursor/skills/{skill-name}` regardless of how they're organized in this repo. Nested groups (e.g. `skills/project-management/plan/plan-vision/`) install as `~/.cursor/skills/plan-vision/`.
+Skills install flat by skill directory name regardless of how they're organized in this repo. Nested groups (e.g. `skills/project-management/plan/plan-vision/`) install as `plan-vision/` under the target agent directory.
+
+- Cursor target: `~/.cursor/skills/{skill-name}`
+- Codex target: `~/.codex/skills/{skill-name}`
+- Codex override: set `CODEX_HOME` to redirect installs to `{CODEX_HOME}/skills`
 
 ## Evals
 
