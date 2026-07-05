@@ -1,32 +1,21 @@
 ---
 name: quick-summarize
-description: >
-  Distills any text input into a brief, high-signal summary. Use when the user
-  wants a quick digest, TL;DR, gist, or compact summary without full structure.
+description: Distills any text input into a brief, high-signal summary. Use when the user wants a quick digest, TL;DR, gist, or compact summary without full structure.
+metadata:
+  author: zs
+  version: "1.1"
 ---
 
 # Quick Summarize
 
-Produce a compact summary that captures the essence of the input. Output to chat. Max ~15 lines of output.
+## Outcome
 
-## Instructions
+Compact summary capturing the essence of any text. Max ~15 lines. Default output in chat. Every line must carry signal.
 
-1. Read the full input first.
-2. Output using the format below. Omit Source/Author if unknown — never fabricate.
-3. No filler, no fluff. Every line must carry signal.
+See [references/output-format.md](references/output-format.md) for format.
 
-## Output Format
+## Guardrails
 
-```markdown
-# [Descriptive Title]
-
-Source: [linked title](URL) | Author: [Name]
-
-[2-3 sentence core summary. What is it, what matters, why.]
-
-## Key Takeaways
-
-- [Insight or actionable point — be specific]
-- ...
-- (3-5 bullets max)
-```
+- Read full input before writing.
+- Never fabricate Source/Author — omit if unknown.
+- No filler, no fluff.

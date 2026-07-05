@@ -1,80 +1,22 @@
 ---
 name: summarize
-description: >
-  Summarizes articles, blog posts, papers, or any text input into a structured,
-  scannable format. Use when the user asks to summarize, digest, extract key
-  learnings, or get takeaways from content.
+description: Summarizes articles, blog posts, papers, or any text input into a structured, scannable format. Use when the user asks to summarize, digest, extract key learnings, or get takeaways from content.
+metadata:
+  author: zs
+  version: "1.1"
 ---
 
 # Summarize
 
-Extract a structured summary from any input. Output to chat by default. Write to file only when the user explicitly requests it (default path: `research/outputs/reports/`).
+## Outcome
 
-## Instructions
+Structured, scannable summary of articles, blog posts, papers, or any text. Default output in chat; write to file only when asked (default path: `research/outputs/reports/`). Stay under 100 lines. Be concise and specific; do not miss important information.
 
-1. Read the full input before writing anything.
-2. Identify: core argument, key learnings, anything actionable, open questions, and sequential processes.
-3. Produce output using the template below. Stay under 100 lines total.
-4. Be concise and specific. No filler, no fluff, no AI-isms.
-5. Do not miss important information from the source.
-6. Omit optional sections entirely if nothing qualifies (don't include empty headings).
+See [references/output-template.md](references/output-template.md) for format, section rules, and edge cases.
 
-## Edge Cases
+## Guardrails
 
-- **Very short input (< 1 paragraph):** Produce only Title + Summary + Key Learnings. Skip the horizontal rules and optional sections.
-- **No URL or author available:** Use `Source: [title or description of origin]` and `Author: Unknown`. Never fabricate metadata.
-- **Multiple sources in one request:** Produce one summary per source, each with its own heading hierarchy.
-- **Non-article formats (transcripts, READMEs, threads):** Adapt the Source line to fit (e.g., `Source: GitHub README — repo-name`). The rest of the template still applies.
-
-## Output Template
-
-```markdown
-# [Descriptive Title]
-
-Source: [linked title](URL) (Date)
-Author: [Name, Affiliation]
-
-[2-4 sentence prose summary. What is this about, what did they do/claim, what's the key result.]
-
----
-
-## Key Learnings
-
-**1. [Bold claim or insight title.]**
-[1-2 sentences explaining the learning with specifics from the source.]
-
-**2. ...**
-
----
-
-## Actionable Takeaways
-
-- [Concrete action someone can take based on this content]
-- ...
-
----
-
-## [Process/Workflow Title]
-
-| Phase      | What | Why |
-| ---------- | ---- | --- |
-| **1. ...** | ...  | ... |
-| **2. ...** | ...  | ... |
-
----
-
-## Further Investigation
-
-- [Question or topic raised that deserves deeper research]
-- ...
-```
-
-### Section Rules
-
-| Section                  | Required | When to include                  |
-| ------------------------ | -------- | -------------------------------- |
-| Title + Source + Summary | Yes      | Always                           |
-| Key Learnings            | Yes      | Always (minimum 3)               |
-| Actionable Takeaways     | No       | Present or inferable from source |
-| Step-by-Step Process     | No       | Present or inferable from source |
-| Further Investigation    | No       | Present or inferable from source |
+- Read full input before writing.
+- Omit optional sections if nothing qualifies — no empty headings.
+- Never fabricate metadata. Use `Author: Unknown` when unknown.
+- No filler, no fluff, no AI-isms.

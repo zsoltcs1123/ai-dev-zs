@@ -1,31 +1,25 @@
 # AGENTS.md
 
-## Overview
+Agent skills repo. Portable across Cursor, Codex, Copilot, Gemini, Cline, and other harnesses that read `.agents/skills/`.
 
-Repository for creating AI development artifacts: skills, subagents, rules, and orchestration patterns. Portable across Cursor, Claude Code, Codex, Gemini, and other markdown-reading agents.
+## Authoring
 
-## Primary Task
+Read [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) first — primary guide for writing skills here.
 
-Support creation of:
+Skills must also conform to the [Agent Skills specification](https://agentskills.io/specification).
 
-- **Skills** — Reusable workflows in `SKILL.md` format
-- **Subagents** — Thin wrappers that delegate to skills
-- **Rules** — Coding conventions and standards
-- **Orchestration patterns** — Multi-agent workflows
+## Install
 
-## Resources
+```bash
+./skills/install.sh          # project: ./.agents/skills/
+./skills/install.sh --global   # user: ~/.agents/skills/
+./skills/install.sh --list     # list installable skills
+```
 
-- [agentskills.io](https://agentskills.io/) — Official Agent Skills specification
-- `create-skill` skill — Use for skill authoring guidance
+Re-run to refresh after updates.
 
-## Constraints
+## Key files
 
-- Skills must follow [agentskills.io specification](https://agentskills.io/specification)
-- SKILL.md files: max 500 lines, description max 1024 chars
-- Descriptions: third-person, include WHAT and WHEN
-- Use progressive disclosure (reference files for detailed content)
-
-## Key Files
-
-- `skills/INDEX.md` — Skill catalog
-- `workspace/` — Temporary files, load on demand only
+- [skills/index.md](./skills/index.md) — skill catalog
+- [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) — how to write skills
+- [skills/install.sh](./skills/install.sh) — copy skills into `.agents/skills/`

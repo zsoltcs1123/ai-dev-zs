@@ -1,121 +1,34 @@
-# AI Dev Tools
+# AI Dev Skills
 
-Collection of reusable AI development tools: skills, subagents, prompts, and related artifacts.
+Small curated set of agent skills plus a universal installer for `.agents/skills/`.
 
-## Structure
-
-```
-skills/          # Agent skills (reusable instruction sets)
-scripts/         # Installation scripts
-subagents/       # Specialized subagent definitions
-prompts/         # Prompt templates
-```
+Works with Cursor 2.4+, Codex, Copilot, Gemini, Cline, and other harnesses that read `.agents/skills/` natively.
 
 ## Install
 
-### Windows (PowerShell)
-
-```powershell
-# Cursor: single skill
-.\scripts\install-cursor-skills.ps1 project-planner
-
-# Cursor: all skills
-.\scripts\install-cursor-skills.ps1
-
-# Codex: single skill
-.\scripts\install-codex-skills.ps1 -Skills project-planner
-
-# Codex: all skills
-.\scripts\install-codex-skills.ps1
-```
-
-### Linux/macOS (Bash)
-
 ```bash
-# Cursor: single skill
-./scripts/install-cursor-skills.sh project-planner
-
-# Cursor: all skills
-./scripts/install-cursor-skills.sh
-
-# Codex: single skill
-./scripts/install-codex-skills.sh project-planner
-
-# Codex: all skills
-./scripts/install-codex-skills.sh
+./skills/install.sh              # current project → .agents/skills/
+./skills/install.sh /path/to/app # specific project
+./skills/install.sh --global     # ~/.agents/skills/
+./skills/install.sh --list       # list skills
 ```
+
+Re-run to update installed copies.
 
 ## Skills
 
-See [skills/INDEX.md](./skills/INDEX.md) for the full list.
+See [skills/index.md](./skills/index.md).
 
-Skills install flat by skill directory name regardless of how they're organized in this repo. Nested groups (e.g. `skills/project-management/plan/plan-vision/`) install as `plan-vision/` under the target agent directory.
+| Skill | Purpose |
+| ----- | ------- |
+| capture-idea | Distill freeform input into bullet points |
+| vibe-plan | Explore an idea into a high-level plan |
+| plan-vision | Produce a VISION.md through guided conversation |
+| plan-architecture | Produce an ARCHITECTURE.md through guided conversation |
+| summarize | Structured summary of articles and long text |
+| quick-summarize | Brief TL;DR without full structure |
+| review-skill | Audit a SKILL.md for spec and quality |
 
-- Cursor target: `~/.cursor/skills/{skill-name}`
-- Codex target: `~/.codex/skills/{skill-name}`
-- Codex override: set `CODEX_HOME` to redirect installs to `{CODEX_HOME}/skills`
+## Authoring
 
-## Evals
-
-Skills can include structured evaluations to test whether they produce good outputs reliably. Evals live in an `evals/` directory inside the skill folder.
-
-### Structure
-
-```
-{skill}/
-  SKILL.md
-  evals/
-    evals.json              # test cases with prompts, expected outputs, assertions
-    files/                  # synthetic input files per test case
-      {case-name}/
-        ...
-```
-
-### Running an eval
-
-Each test case runs twice: once **with the skill** and once **without it** (baseline). This tells you what the skill actually adds.
-
-1. **Copy input files** to a clean working directory so the run doesn't pollute the eval source files.
-
-2. **With-skill run** — start a fresh agent session (or subagent) and provide:
-
-   ```
-   Read and follow the skill at {path-to-skill}/SKILL.md.
-   {prompt from evals.json}
-   Input files are in {working-dir}/.
-   Write all outputs to {working-dir}/.
-   ```
-
-3. **Baseline run** — same prompt and input files, no skill reference.
-
-4. **Grade** — for each assertion in the test case, check the outputs and record PASS/FAIL with evidence. Save results in a `grading.json` alongside the outputs.
-
-5. **Compare** — the delta between with-skill and baseline pass rates tells you the skill's value.
-
-### Workspace layout for results
-
-```
-{skill}-workspace/
-  iteration-1/
-    eval-{case-name}/
-      with_skill/
-        outputs/            # files produced by the run
-        grading.json        # assertion results
-      without_skill/
-        outputs/
-        grading.json
-    benchmark.json          # aggregated pass rates and delta
-```
-
-### Iterating
-
-After grading, use failed assertions, human feedback, and execution transcripts to improve the skill. Rerun in a new `iteration-N/` directory. Stop when pass rates plateau and human review finds no issues.
-
-See [agentskills.io/skill-creation/evaluating-skills](https://agentskills.io/skill-creation/evaluating-skills) for the full eval methodology.
-
-### Skills with evals
-
-| Skill | Test cases | What's tested |
-| ----- | ---------- | ------------- |
-| [run-plan](./skills/project-management/plan/run-plan/SKILL.md) | 3 (multi-ws, single-ws, minimal) | Pipeline sequencing, fan-out completeness, file system correctness, single-workstream simplification |
-| [run-spec](./skills/project-management/spec/run-spec/SKILL.md) | 3 (multi, single, missing) | Pipeline sequencing, per-feature delegation, missing-input handling |
+New skills follow [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) and the [Agent Skills spec](https://agentskills.io/specification). Agents working in this repo should read [AGENTS.md](./AGENTS.md).
