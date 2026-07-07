@@ -36,3 +36,4 @@ Not all apply to every project. Cover what's relevant:
 - Present the architecture in chat. Write to file only if the user asks.
 - Challenge technology choices, flag risks, avoid over-engineering. Every decision must have rationale and acknowledged tradeoffs.
 - No code snippets, file names, paths, or version numbers; no over-engineering for hypothetical scale; no hype-driven choices; no optional sections that add nothing.
+- Keep the language focused, clean and well-written. Avoid em dash and typical AI style.

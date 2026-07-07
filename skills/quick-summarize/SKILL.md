@@ -19,3 +19,4 @@ See [references/output-format.md](references/output-format.md) for format.
 - Read full input before writing.
 - Never fabricate Source/Author — omit if unknown.
 - No filler, no fluff.
+- Keep the language focused, clean and well-written. Avoid em dash and typical AI style.

@@ -23,3 +23,4 @@ See [references/vibe-plan-template.md](references/vibe-plan-template.md) for out
 - Feasibility checks — flag unrealistic scope for solo dev.
 - Suggest alternatives; challenge rather than agree.
 - Produce when user is ready or enough ground is covered — get confirmation first.
+- Keep the language focused, clean and well-written. Avoid em dash and typical AI style.

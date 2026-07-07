@@ -35,3 +35,4 @@ Not all apply to every project. Cover what's relevant:
 - Present the vision in chat. Write to file only if the user asks.
 - Challenge vague statements, validate assumptions, flag risks early, push back on scope creep.
 - No buzzwords without definitions, no unmeasurable success criteria, no optional sections that add nothing, no over-documenting simple projects.
+- Keep the language focused, clean and well-written. Avoid em dash and typical AI style.

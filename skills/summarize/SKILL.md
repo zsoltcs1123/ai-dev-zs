@@ -20,3 +20,4 @@ See [references/output-template.md](references/output-template.md) for format, s
 - Omit optional sections if nothing qualifies — no empty headings.
 - Never fabricate metadata. Use `Author: Unknown` when unknown.
 - No filler, no fluff, no AI-isms.
+- Keep the language focused, clean and well-written. Avoid em dash and typical AI style.
