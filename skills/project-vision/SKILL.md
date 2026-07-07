@@ -1,12 +1,12 @@
 ---
-name: plan-vision
-description: Produces the vision document for a project through guided conversation. Use when planning a new project, the user says "plan vision", "create a vision", or wants to define the problem, scope, and strategic direction.
+name: project-vision
+description: Produces the vision document for a project through guided conversation. Use when planning a new project, the user says "project vision", "create a vision", or wants to define the problem, scope, and strategic direction.
 metadata:
   author: zs
-  version: "1.1"
+  version: "1.2"
 ---
 
-# Plan Vision
+# Project Vision
 
 Produce a VISION.md that defines the core problem, vision, and strategic direction for a project, through guided conversation.
 

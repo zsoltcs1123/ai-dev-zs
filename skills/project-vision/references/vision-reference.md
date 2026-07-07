@@ -1,6 +1,6 @@
 # VISION.md Reference
 
-Section reference and quality bar for the VISION.md produced by the plan-vision skill.
+Section reference and quality bar for the VISION.md produced by the project-vision skill.
 
 ## Section Reference
 

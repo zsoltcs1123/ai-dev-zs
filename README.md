@@ -22,9 +22,9 @@ See [skills/index.md](./skills/index.md).
 | Skill | Purpose |
 | ----- | ------- |
 | capture-idea | Distill freeform input into bullet points |
-| vibe-plan | Explore an idea into a high-level plan |
-| plan-vision | Produce a VISION.md through guided conversation |
-| plan-architecture | Produce an ARCHITECTURE.md through guided conversation |
+| project-seed | Explore an idea into a seed document that bootstraps a new repo |
+| project-vision | Produce a VISION.md through guided conversation |
+| project-architecture | Produce an ARCHITECTURE.md through guided conversation |
 | summarize | Structured summary of articles and long text |
 | quick-summarize | Brief TL;DR without full structure |
 | review-skill | Audit a SKILL.md for spec and quality |

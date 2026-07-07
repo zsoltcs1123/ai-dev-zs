@@ -1,12 +1,12 @@
 ---
-name: plan-architecture
-description: Produces the architecture document for a project. Use when the user says "plan architecture", "design the architecture", "create architecture", or wants to define technical structure, components, and technology choices.
+name: project-architecture
+description: Produces the architecture document for a project. Use when the user says "project architecture", "design the architecture", "create architecture", or wants to define technical structure, components, and technology choices.
 metadata:
   author: zs
-  version: "1.1"
+  version: "1.2"
 ---
 
-# Plan Architecture
+# Project Architecture
 
 Produce an ARCHITECTURE.md defining high-level technical structure, components, and technology choices, through guided conversation.
 

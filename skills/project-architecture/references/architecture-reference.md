@@ -1,6 +1,6 @@
 # ARCHITECTURE.md Reference
 
-Section reference and quality bar for the ARCHITECTURE.md produced by the plan-architecture skill.
+Section reference and quality bar for the ARCHITECTURE.md produced by the project-architecture skill.
 
 ## Section Reference
 

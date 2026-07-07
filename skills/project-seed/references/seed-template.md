@@ -1,13 +1,14 @@
-# Vibe Plan Template
+# Project Seed Document Template
 
 Loose skeleton — deviate when the project calls for it. Not every section applies.
+
+A project seed document contains everything needed to create and bootstrap a new code repository.
 
 - **Project overview** — one-paragraph summary of what this is and why it exists
 - **Target users / audience**
 - **Core features** — broken into tiers (POC / MVP / V1) where applicable
-- **Tech considerations** — stack ideas, key libraries, infrastructure
+- **Tech considerations** — stack, key libraries, infrastructure
 - **Data design** — high-level data model or data flow
-- **Suggested workstreams** — optional; only when large enough for parallel tracks (e.g. "Platform", "API", "Frontend"). Omit for single-track projects.
 - **Risks and open questions**
 - **Existing alternatives / prior art**
 
@@ -15,7 +16,7 @@ Loose skeleton — deviate when the project calls for it. Not every section appl
 
 Cover what's relevant — not all apply to every idea:
 
-- Required details to start thinking about the project
+- What's needed to scaffold the repo and start building
 - Feasibility
 - Technological choices and technical design
 - Alternatives, options, tradeoffs
