@@ -28,6 +28,7 @@ See [skills/index.md](./skills/index.md).
 | summarize | Structured summary of articles and long text |
 | quick-summarize | Brief TL;DR without full structure |
 | review-skill | Audit a SKILL.md for spec and quality |
+| code-review | Review a diff against quality, conventions, principles, security, and testing |
 
 ## Authoring
 
