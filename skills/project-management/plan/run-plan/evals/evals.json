@@ -1,0 +1,70 @@
+{
+  "skill_name": "run-plan",
+  "evals": [
+    {
+      "id": 1,
+      "name": "multi-workstream-happy-path",
+      "prompt": "Run plan on the docs directory at evals/files/multi-ws/.",
+      "expected_output": "Complete plan artifacts: FEATURES.md with 2+ workstreams, feature specs for every feature, workstream roadmaps for every workstream, and a project-level ROADMAP.md aggregating all workstreams.",
+      "files": [
+        "evals/files/multi-ws/VISION.md",
+        "evals/files/multi-ws/ARCHITECTURE.md"
+      ],
+      "assertions": [
+        "FEATURES.md exists in the docs directory",
+        "FEATURES.md contains a workstream summary table with at least 2 workstreams",
+        "FEATURES.md contains feature tables with codes matching the {WS}-{N} pattern (e.g., PLT-1, UI-2)",
+        "For every feature code listed in FEATURES.md, a corresponding file exists at {WS}/{FC}/{FC}.md",
+        "Every feature spec file contains the sections: Goal, Status, Deliverables (as a table), and Exit Criteria (as a bullet list)",
+        "Every feature spec has between 2 and 10 deliverables in its Deliverables table",
+        "For every workstream code in FEATURES.md, a {WS}/{WS}-roadmap.md file exists",
+        "Every workstream roadmap contains a milestone summary table that references only feature codes belonging to that workstream",
+        "No feature code appears in a workstream roadmap it does not belong to",
+        "ROADMAP.md exists in the docs directory",
+        "ROADMAP.md contains a schedule table with one column per workstream",
+        "ROADMAP.md references all workstream roadmaps",
+        "The agent printed a completion summary listing all artifact file paths",
+        "The completion summary reports no failures"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "single-workstream-simplification",
+      "prompt": "Run plan on evals/files/single-ws/.",
+      "expected_output": "Complete plan artifacts for a single-workstream project: FEATURES.md with 1 workstream, feature specs for every feature, and ROADMAP.md written as a workstream roadmap (no project-level aggregation).",
+      "files": [
+        "evals/files/single-ws/VISION.md",
+        "evals/files/single-ws/ARCHITECTURE.md"
+      ],
+      "assertions": [
+        "FEATURES.md exists in the docs directory",
+        "FEATURES.md contains exactly 1 workstream in the summary table",
+        "For every feature code listed in FEATURES.md, a corresponding file exists at {WS}/{FC}/{FC}.md",
+        "Every feature spec file contains the sections: Goal, Status, Deliverables (as a table), and Exit Criteria (as a bullet list)",
+        "ROADMAP.md exists in the docs directory",
+        "ROADMAP.md is structured as a workstream roadmap (has milestone summary table with feature references) not as a project-level roadmap (no cross-workstream schedule table)",
+        "The agent's output mentions single workstream simplification or skipping the project roadmap stage",
+        "No separate {WS}/{WS}-roadmap.md file exists — the roadmap lives at ROADMAP.md directly"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "minimal-viable-input",
+      "prompt": "Run plan for evals/files/minimal/.",
+      "expected_output": "A proportionally small set of plan artifacts: FEATURES.md with 2-5 features in 1 workstream, feature specs for each, and ROADMAP.md. No over-generation or hallucinated structure beyond what the tiny input warrants.",
+      "files": [
+        "evals/files/minimal/VISION.md",
+        "evals/files/minimal/ARCHITECTURE.md"
+      ],
+      "assertions": [
+        "FEATURES.md exists and lists at least 2 but no more than 5 features",
+        "FEATURES.md lists exactly 1 workstream (proportional to the tiny input scope)",
+        "For every feature code in FEATURES.md, a corresponding feature spec file exists",
+        "Every feature spec has between 2 and 10 deliverables",
+        "ROADMAP.md exists",
+        "No output files are empty or contain only placeholder text",
+        "The total number of milestones in ROADMAP.md is no more than 3 (proportional to scope)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "skill_name": "run-spec",
+  "evals": [
+    {
+      "id": 1,
+      "name": "single-feature",
+      "prompt": "Run spec on evals/files/single/ for feature LCK-1.",
+      "expected_output": "Task plan and validation suite for LCK-1, produced by running the 3-stage pipeline directly (no subagent).",
+      "files": [
+        "evals/files/single/LCK/LCK-1/LCK-1.md"
+      ],
+      "assertions": [
+        "LCK-1-tasks.md exists at evals/files/single/LCK/LCK-1/LCK-1-tasks.md",
+        "LCK-1-tasks.md contains a summary table with at least 3 tasks",
+        "LCK-1-tasks.md contains detailed task headings with Steps, Implementation requirements, and Verification scenarios sections",
+        "LCK-1-tasks.md task descriptions reference link extraction concepts from the feature spec (inline links, reference links, location tracking)",
+        "LCK-1-validations.md exists at evals/files/single/LCK/LCK-1/LCK-1-validations.md",
+        "LCK-1-validations.md contains scenario IDs matching the LCK-1-VS{N} pattern",
+        "LCK-1-validations.md contains at least one scenario tagged (A) and covers all exit criteria from the feature spec",
+        "LCK-1-validations.md contains the Automation Legend section with (A) and (H) definitions",
+        "The agent printed stage progress messages for all 3 stages",
+        "The agent printed a completion summary listing both artifact file paths",
+        "The completion summary reports no failures"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "multiple-features",
+      "prompt": "Run spec on evals/files/multi/ for features COR-1, COR-2, COR-3.",
+      "expected_output": "Task plans and validation suites for all 3 features, produced via subagents in parallel batches.",
+      "files": [
+        "evals/files/multi/COR/COR-1/COR-1.md",
+        "evals/files/multi/COR/COR-2/COR-2.md",
+        "evals/files/multi/COR/COR-3/COR-3.md"
+      ],
+      "assertions": [
+        "COR-1-tasks.md exists at evals/files/multi/COR/COR-1/COR-1-tasks.md and is non-empty",
+        "COR-2-tasks.md exists at evals/files/multi/COR/COR-2/COR-2-tasks.md and is non-empty",
+        "COR-3-tasks.md exists at evals/files/multi/COR/COR-3/COR-3-tasks.md and is non-empty",
+        "COR-1-validations.md exists at evals/files/multi/COR/COR-1/COR-1-validations.md and is non-empty",
+        "COR-2-validations.md exists at evals/files/multi/COR/COR-2/COR-2-validations.md and is non-empty",
+        "COR-3-validations.md exists at evals/files/multi/COR/COR-3/COR-3-validations.md and is non-empty",
+        "Each tasks file contains a summary table with task rows",
+        "Each tasks file contains detailed task headings with Steps and Verification scenarios sections",
+        "Each validations file contains scenario IDs matching the {FC}-VS{N} pattern for its feature code",
+        "The agent used subagents (not direct execution) for the 3-feature batch",
+        "The agent printed a completion summary listing all 6 artifact file paths",
+        "The completion summary reports no failures"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "missing-feature-spec",
+      "prompt": "Run spec on evals/files/missing/ for features API-1 and API-2.",
+      "expected_output": "API-1 succeeds (task plan + validation suite produced). API-2 is skipped because its feature spec does not exist. The completion summary reports API-2 as a failure.",
+      "files": [
+        "evals/files/missing/API/API-1/API-1.md"
+      ],
+      "assertions": [
+        "API-1-tasks.md exists at evals/files/missing/API/API-1/API-1-tasks.md and is non-empty",
+        "API-1-validations.md exists at evals/files/missing/API/API-1/API-1-validations.md and is non-empty",
+        "No API-2-tasks.md or API-2-validations.md files were created",
+        "The agent reported that API-2 has no feature spec and was skipped",
+        "The completion summary lists API-2 as a failure or skipped feature",
+        "The completion summary lists API-1 artifacts as successfully produced"
+      ]
+    }
+  ]
+}
