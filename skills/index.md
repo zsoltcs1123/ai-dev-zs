@@ -10,3 +10,4 @@
 | [quick-summarize](./quick-summarize/SKILL.md) | Distills any text into a brief, high-signal summary without full structure |
 | [review-skill](./review-skill/SKILL.md) | Reviews Agent Skills for spec conformance, usability, token efficiency, and scope |
 | [code-review](./code-review/SKILL.md) | Reviews code changes against quality, conventions, principles, security, and testing |
+| [style-gdocs](./style-gdocs/SKILL.md) | Applies Google developer documentation style to chat replies and written docs (manual invoke only) |
