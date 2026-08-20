@@ -36,11 +36,15 @@ Glanceable overview. Three sections:
 2. **Findings by layer** — each issue as one short line: severity tag, brief description, location (`file:line`). If a layer has no issues, say so.
 3. **Totals** — one line with counts per severity.
 
-Keep descriptions to a single clause. Full explanations come in the walkthrough.
+Keep descriptions to a single clause. Full explanations come in the fix phase.
 
 If no convention or principles docs were found, say so in the report and proceed on general judgment.
 
-## Walkthrough
+## Fix Protocol
+
+When applying fixes (either mode), respect discovered repo conventions, principles, and rules; where those docs are silent, apply best general engineering judgment.
+
+### Interactive
 
 Walk through issues one at a time, highest severity first across all layers.
 
@@ -52,6 +56,18 @@ For each issue:
 4. **Wait** — wait for the user to respond before the next issue.
 
 After the last issue, summarize what was fixed and what was skipped.
+
+### Non-interactive
+
+After the report:
+
+1. If no issues → stop.
+2. Ask once: fix all listed issues? (yes/no)
+3. **Yes** → apply every issue in sequence, highest severity first. No per-issue wait.
+4. **No** → stop. Report already delivered.
+5. After applying → summarize what was fixed.
+
+If the user answers with a subset instead of yes/no, follow that reply.
 
 ## Edge Cases
 

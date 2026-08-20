@@ -8,6 +8,7 @@
 | [project-architecture](./project-architecture/SKILL.md) | Produces the architecture document defining technical structure, components, and technology choices |
 | [summarize](./summarize/SKILL.md) | Summarizes articles, blog posts, papers, or any text into a structured, scannable format |
 | [quick-summarize](./quick-summarize/SKILL.md) | Distills any text into a brief, high-signal summary without full structure |
+| [new-skill](./new-skill/SKILL.md) | Creates a portable Agent Skill from a user description |
 | [review-skill](./review-skill/SKILL.md) | Reviews Agent Skills for spec conformance, usability, token efficiency, and scope |
 | [code-review](./code-review/SKILL.md) | Reviews code changes against quality, conventions, principles, security, and testing |
 | [style-gdocs](./style-gdocs/SKILL.md) | Applies Google developer documentation style to chat replies and written docs (manual invoke only) |
