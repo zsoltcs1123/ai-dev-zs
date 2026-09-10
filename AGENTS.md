@@ -8,6 +8,8 @@ Read [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) first — primary guide for writ
 
 Skills must also conform to the [Agent Skills specification](https://agentskills.io/specification).
 
+External skills (marked in [skills/index.md](./skills/index.md)) are copied verbatim from upstream. They are exempt from this repo's SKILL-DEV-GUIDE principles; keep them unchanged unless syncing from source.
+
 ## Install
 
 ```bash
