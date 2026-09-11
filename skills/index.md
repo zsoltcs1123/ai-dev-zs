@@ -14,3 +14,4 @@
 | [style-gdocs](./style-gdocs/SKILL.md) | Applies Google developer documentation style to chat replies and written docs (manual invoke only) | | |
 | [unslop](./unslop/SKILL.md) | Cut AI tells from any writing | yes | [cursor/plugins](https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md) |
 | [technical-writing](./technical-writing/SKILL.md) | Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for /technical-writing. | yes | [cursor/plugins](https://github.com/cursor/plugins/blob/main/pstack/skills/technical-writing/SKILL.md) |
+| [adr](./adr/SKILL.md) | Draft an Architecture Decision Record. Use when the user says "new ADR", "write an ADR", "record a decision", or "/adr". | | |

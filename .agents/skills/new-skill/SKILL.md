@@ -16,7 +16,7 @@ A new Agent Skill directory at `.agents/skills/<name>/` unless the user names an
 
 ## Guardrails
 
-Follow the live [Agent Skills spec](https://agentskills.io/specification) and [references/skill-dev-guide.md](references/skill-dev-guide.md). Do not copy spec text into generated skills.
+Follow the live [Agent Skills spec](https://agentskills.io/specification) and [references/skill-dev-guide.md](references/skill-dev-guide.md).
 
 ## Tools
 
