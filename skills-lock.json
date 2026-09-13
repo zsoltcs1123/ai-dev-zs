@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "skills": {
+    "adr": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/adr/SKILL.md"
+    },
+    "architecture": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/architecture/SKILL.md"
+    },
+    "capture-idea": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/capture-idea/SKILL.md"
+    },
+    "code-review": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/code-review/SKILL.md"
+    },
+    "new-skill": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/new-skill/SKILL.md"
+    },
+    "program-design": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/program-design/SKILL.md"
+    },
+    "project-architecture": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/project-architecture/SKILL.md"
+    },
+    "project-seed": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/project-seed/SKILL.md"
+    },
+    "project-vision": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/project-vision/SKILL.md"
+    },
+    "quick-summarize": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/quick-summarize/SKILL.md"
+    },
+    "review-skill": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/review-skill/SKILL.md"
+    },
+    "style-gdocs": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/style-gdocs/SKILL.md"
+    },
+    "summarize": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/summarize/SKILL.md"
+    }
+  }
+}
