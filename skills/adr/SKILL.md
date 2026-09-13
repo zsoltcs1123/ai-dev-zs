@@ -1,6 +1,7 @@
 ---
 name: adr
 description: Draft an Architecture Decision Record. Use when the user says "new ADR", "write an ADR", "record a decision", or "/adr".
+disable-model-invocation: true
 metadata:
   author: zs
   version: "2.0.0"

@@ -1,6 +1,7 @@
 ---
 name: summarize
 description: Summarizes articles, blog posts, papers, or any text input into a structured, scannable format. Use when the user asks to summarize, digest, extract key learnings, or get takeaways from content.
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.1"

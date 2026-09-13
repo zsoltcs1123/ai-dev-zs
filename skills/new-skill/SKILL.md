@@ -3,6 +3,7 @@ name: new-skill
 description:
   Creates a portable Agent Skill from a user description. Use when the user wants a new skill, says "new skill", "create a skill", "author a skill", or wants a SKILL.md written from a workflow or set
   of rules.
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.2"

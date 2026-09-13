@@ -1,32 +1,15 @@
 # AI Dev Skills
 
-Small curated set of agent skills plus a universal installer for `.agents/skills/`.
+Curated agent skills for planning, writing, reviewing, and project docs — plus selected externals (Cursor plugins, Matt Pocock, caveman, and others).
 
-Works with Cursor 2.4+, Codex, Copilot, Gemini, Cline, and other harnesses that read `.agents/skills/` natively.
+Works with any harness that reads `.agents/skills/` (Cursor, Codex, Copilot, Gemini, Cline, …).
 
-## Install
-
-Recommended — [npx skills](https://github.com/vercel-labs/skills) (works with Cursor, Codex, Copilot, Gemini, Cline, and 70+ other agents):
+## Quick start
 
 ```bash
-npx skills add zsoltcs1123/ai-dev-zs -a cursor -y                    # all skills, project
-npx skills add zsoltcs1123/ai-dev-zs --skill code-review -a cursor -y  # one skill
-npx skills add zsoltcs1123/ai-dev-zs -g -a cursor -y                   # global (→ ~/.cursor/skills/)
-npx skills add zsoltcs1123/ai-dev-zs --list                            # list available skills
-npx skills update -y                                                   # refresh installed skills
+./skills/install.sh --global
 ```
 
-Fallback — no Node required:
+Operational details (install flags, authoring, external skills, git hooks): [AGENTS.md](./AGENTS.md)
 
-```bash
-./skills/install.sh              # current project → .agents/skills/
-./skills/install.sh /path/to/app # specific project
-./skills/install.sh --global     # ~/.agents/skills/
-./skills/install.sh --list       # list skills
-```
-
-Re-run either method to update installed copies.
-
-## Skills
-
-See [skills/index.md](./skills/index.md).
+Skill catalog: [skills/index.md](./skills/index.md)

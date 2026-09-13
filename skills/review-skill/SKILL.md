@@ -1,6 +1,7 @@
 ---
 name: review-skill
 description: Reviews Agent Skills (SKILL.md files) for specification conformance, agent usability, token efficiency, instruction structure, and scope cohesion. Use when the user asks to review, audit, check, or validate a skill they created or are editing.
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.1"

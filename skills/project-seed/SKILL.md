@@ -1,6 +1,7 @@
 ---
 name: project-seed
 description: Explores a project idea through guided conversation and produces a project seed document — enough to create and bootstrap a new code repository. Use when the user wants to explore an idea, says "seed this", "project seed", or wants to define scope, tech choices, and direction before starting a repo.
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.1"

@@ -1,6 +1,7 @@
 ---
 name: capture-idea
 description: Captures an idea from freeform input or conversation as concise bullet points. Use when the user shares a new idea, brain dump, or wants to record something that emerged from discussion.
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.1"

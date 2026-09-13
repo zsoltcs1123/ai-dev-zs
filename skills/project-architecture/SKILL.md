@@ -1,6 +1,7 @@
 ---
 name: project-architecture
 description: Produces the architecture document for a project. Use when the user says "project architecture", "design the architecture", "create architecture", or wants to define technical structure, components, and technology choices.
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.2"

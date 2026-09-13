@@ -1,6 +1,7 @@
 ---
 name: quick-summarize
 description: Distills any text input into a brief, high-signal summary. Use when the user wants a quick digest, TL;DR, gist, or compact summary without full structure.
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.1"

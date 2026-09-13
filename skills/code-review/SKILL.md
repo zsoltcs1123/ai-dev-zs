@@ -1,6 +1,7 @@
 ---
 name: code-review
 description: Reviews code changes against six layers — code quality, project conventions, engineering principles, security, testing, and spec conformance. Produces a brief report then fixes issues interactively or in batch. Use when asked to "review code", "check my changes", "review my PR", "review this branch", "quality check", "code-review interactive", or "code-review non-interactive".
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.5"

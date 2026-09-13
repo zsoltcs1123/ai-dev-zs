@@ -1,0 +1,15 @@
+# External skills fetched at install time (not vendored in this repo).
+# Format: name  repo  path  ref
+unslop  cursor/plugins  pstack/skills/unslop  main
+technical-writing  cursor/plugins  pstack/skills/technical-writing  main
+caveman  JuliusBrussee/caveman  skills/caveman  main
+caveman-compress  JuliusBrussee/caveman  skills/caveman-compress  main
+caveman-help  JuliusBrussee/caveman  skills/caveman-help  main
+caveman-review  JuliusBrussee/caveman  skills/caveman-review  main
+codebase-design  mattpocock/skills  skills/engineering/codebase-design  main
+domain-modeling  mattpocock/skills  skills/engineering/domain-modeling  main
+grill-me  mattpocock/skills  skills/productivity/grill-me  main
+grilling  mattpocock/skills  skills/productivity/grilling  main
+improve-codebase-architecture  mattpocock/skills  skills/engineering/improve-codebase-architecture  main
+teach  mattpocock/skills  skills/productivity/teach  main
+wayfinder  mattpocock/skills  skills/engineering/wayfinder  main

@@ -1,6 +1,7 @@
 ---
 name: project-vision
 description: Produces the vision document for a project through guided conversation. Use when planning a new project, the user says "project vision", "create a vision", or wants to define the problem, scope, and strategic direction.
+disable-model-invocation: true
 metadata:
   author: zs
   version: "1.2"

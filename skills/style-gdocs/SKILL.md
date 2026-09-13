@@ -1,11 +1,11 @@
 ---
 name: style-gdocs
 description: Applies Google developer documentation style to chat replies and written docs. Use only when the user explicitly invokes style-gdocs.
+disable-model-invocation: true
 license: CC-BY-4.0
 metadata:
   author: zs
   version: "1.0"
-  disable-model-invocation: "true"
 ---
 
 # Style Gdocs
