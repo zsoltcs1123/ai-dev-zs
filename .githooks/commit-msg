@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+subject=$(head -1 "$1" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+[[ "$subject" =~ ^Merge ]] && exit 0
+pat='^(feat|fix|docs|chore)(\([a-z0-9-]+\))?: .+'
+[[ "$subject" =~ $pat ]] || {
+  echo "commit-msg: use type: description (feat, fix, docs, chore)" >&2
+  exit 1
+}
+if ((${#subject} > 108)); then
+  echo "commit-msg: subject exceeds 108 characters (${#subject})" >&2
+  exit 1
+fi

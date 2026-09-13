@@ -12,13 +12,27 @@ External skills (marked in [skills/index.md](./skills/index.md)) are copied verb
 
 ## Install
 
+Recommended:
+
+```bash
+npx skills add zsoltcs1123/ai-dev-zs -a cursor -y
+npx skills add zsoltcs1123/ai-dev-zs --skill <name> -a cursor -y
+npx skills add zsoltcs1123/ai-dev-zs --list
+npx skills update -y
+```
+
+Fallback (no Node):
+
 ```bash
 ./skills/install.sh          # project: ./.agents/skills/
 ./skills/install.sh --global   # user: ~/.agents/skills/
 ./skills/install.sh --list     # list installable skills
 ```
 
-Re-run to refresh after updates.
+Re-run either method to refresh after updates. Do not commit `.agents/skills/` — it is a local install target (gitignored).
+
+Commits: `type: description` — `feat`, `fix`, `docs`, `chore`.
+Hook: `git config core.hooksPath .githooks` (once per clone).
 
 ## Key files
 

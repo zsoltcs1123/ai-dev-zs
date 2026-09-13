@@ -4,6 +4,9 @@
 # Once installed there, harnesses that read .agents/skills/ natively (Cursor 2.4+,
 # Codex, Copilot, Gemini, Cline, ...) pick them up with no further setup.
 #
+# Prefer npx skills when Node is available:
+#   npx skills add zsoltcs1123/ai-dev-zs -a cursor -y
+#
 # Usage:
 #   ./install.sh [TARGET]        Install into TARGET/.agents/skills/ (default: current dir)
 #   ./install.sh --global        Install into ~/.agents/skills/
