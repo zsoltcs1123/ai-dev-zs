@@ -29,7 +29,7 @@ See [skills/index.md](./skills/index.md).
 | quick-summarize | Brief TL;DR without full structure |
 | new-skill | Create a portable Agent Skill from a user description |
 | review-skill | Audit a SKILL.md for spec and quality |
-| code-review | Review a diff against quality, conventions, principles, security, and testing |
+| code-review | Review a diff against code quality, conventions, principles, security, testing, and spec conformance |
 
 ## Authoring
 

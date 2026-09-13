@@ -10,7 +10,7 @@
 | [quick-summarize](./quick-summarize/SKILL.md) | Distills any text into a brief, high-signal summary without full structure | | |
 | [new-skill](./new-skill/SKILL.md) | Creates a portable Agent Skill from a user description | | |
 | [review-skill](./review-skill/SKILL.md) | Reviews Agent Skills for spec conformance, usability, token efficiency, and scope | | |
-| [code-review](./code-review/SKILL.md) | Reviews code changes against quality, conventions, principles, security, and testing | | |
+| [code-review](./code-review/SKILL.md) | Reviews code changes against code quality, conventions, principles, security, testing, and spec conformance | | |
 | [style-gdocs](./style-gdocs/SKILL.md) | Applies Google developer documentation style to chat replies and written docs (manual invoke only) | | |
 | [unslop](./unslop/SKILL.md) | Cut AI tells from any writing | yes | [cursor/plugins](https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md) |
 | [technical-writing](./technical-writing/SKILL.md) | Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for /technical-writing. | yes | [cursor/plugins](https://github.com/cursor/plugins/blob/main/pstack/skills/technical-writing/SKILL.md) |

@@ -1,48 +1,20 @@
 # Review Workflow
 
-## Layers
-
-Evaluate the change set through all five. Apply standard engineering judgment where the repo has no written standard.
-
-### Layer 1 — General Code Quality
-
-Review separately against each category:
-
-1. Bugs
-2. Behavioral regressions
-3. Performance issues
-
-### Layer 2 — Conventions
-
-Read every discovered convention document that applies to the changed files. Review separately against **each** convention. Flag violations that affect behavior, maintainability, or could confuse future readers.
-
-### Layer 3 — Principles
-
-Read every discovered principles document. Review separately against **each** principle. Flag violations even if unsure.
-
-### Layer 4 — Security
-
-Audit against discovered security docs and general security best practices (injection, authz gaps, secret leakage, unsafe defaults, untrusted input).
-
-### Layer 5 — Testing
-
-Every unit and integration test must earn its keep: test real functionality and add significant value. Flag unnecessary or redundant tests and missing coverage.
-
 ## Report
 
 Glanceable overview. Three sections:
 
 1. **Summary** — 1-3 sentences describing what the changes do (not what's wrong with them).
-2. **Findings by layer** — each issue as one short line: severity tag, brief description, location (`file:line`). If a layer has no issues, say so.
+2. **Findings by layer** — each issue as one short line: severity tag, brief description, location (`file:line`). If a layer has no issues, say so. For skipped layers (no conventions found, no spec found), say so briefly.
 3. **Totals** — one line with counts per severity.
 
 Keep descriptions to a single clause. Full explanations come in the fix phase.
 
-If no convention or principles docs were found, say so in the report and proceed on general judgment.
+If no convention, principles, or coding-rules docs were found, say so in the report for those layers and proceed on general judgment.
 
 ## Fix Protocol
 
-When applying fixes (either mode), respect discovered repo conventions, principles, and rules; where those docs are silent, apply best general engineering judgment.
+When applying fixes (either mode), respect discovered docs. On conflict between layers 1–3, prefer principles over conventions over coding rules. Where those docs are silent, apply best general engineering judgment. Do not change code to satisfy a written standard that conflicts with standard judgment unless the user confirms.
 
 ### Interactive
 
@@ -72,5 +44,6 @@ If the user answers with a subset instead of yes/no, follow that reply.
 ## Edge Cases
 
 - **No git repo / no diff:** ask the user to name files, a patch, or a branch.
-- **Mixed stacks:** load convention docs for every stack touched; don't apply one stack's rules to another.
+- **Mixed stacks:** load coding-rules and convention docs for every stack touched; don't apply one stack's rules to another.
 - **User names specific files after a large-diff prompt:** review only those.
+- **Spec ambiguity:** flag mismatches clearly; don't invent requirements the spec doesn't state.
