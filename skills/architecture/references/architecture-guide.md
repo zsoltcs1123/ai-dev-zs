@@ -17,7 +17,7 @@ Cover every topic this change touches; omit the rest:
 
 ## Dependency Rule
 
-Source dependencies point **inward** toward higher-level policy. Outer pieces (UI, database, web, frameworks) are plugins; inner pieces own the ports.
+Source dependencies point **inward** toward higher-level policy along this change's edges. Outer pieces (UI, database, web, frameworks) are plugins; inner pieces own the ports.
 
 Schematic layers (adapt count; the rule holds): Entities → Use cases → Interface adapters → Frameworks and drivers. Use cases speak request/response, not HTTP or SQL. Flow of control may travel outward. Source dependencies still point in.
 
@@ -51,9 +51,9 @@ Apply every test this change's shape triggers:
 | Artifact | Include when |
 | --- | --- |
 | Component overview | Always |
-| Interaction diagram (sequence or flow) | Multi-step or multi-party flows |
-| Contract shapes | APIs, events, or message boundaries change |
-| Data model changes | Storage or schema changes |
 | Dependency sketch | Always |
 | Decisions table | Always (decision / rationale / tradeoff) |
 | Scope limits | Always |
+| Interaction diagram (sequence or flow) | Multi-step or multi-party flows |
+| Contract shapes | APIs, events, or message boundaries change |
+| Data model changes | Storage or schema changes |

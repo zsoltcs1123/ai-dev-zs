@@ -43,12 +43,12 @@
       "ref": "main",
       "skillPath": "skills/program-design/SKILL.md"
     },
-    "project-architecture": {
+    "system-architecture": {
       "source": "zsoltcs1123/ai-dev-zs",
       "sourceType": "github",
       "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
       "ref": "main",
-      "skillPath": "skills/project-architecture/SKILL.md"
+      "skillPath": "skills/system-architecture/SKILL.md"
     },
     "project-seed": {
       "source": "zsoltcs1123/ai-dev-zs",
@@ -91,6 +91,13 @@
       "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
       "ref": "main",
       "skillPath": "skills/summarize/SKILL.md"
+    },
+    "tighten": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/tighten/SKILL.md"
     }
   }
 }
