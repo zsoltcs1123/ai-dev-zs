@@ -6,6 +6,7 @@
 | [architecture](./architecture/SKILL.md) | Change-scoped system architecture: components, contracts, data flows, inward dependencies. | | |
 | [capture-idea](./capture-idea/SKILL.md) | Captures an idea from freeform input or conversation as concise bullet points | | |
 | [code-review](./code-review/SKILL.md) | Reviews code changes against code quality, conventions, principles, security, testing, and spec conformance | | |
+| [delivery](./delivery/SKILL.md) | Deliver an approved plan in an isolated git worktree or the main checkout. Repo facts cached in a durable markdown note outside the repo. | | |
 | [new-skill](./new-skill/SKILL.md) | Creates a portable Agent Skill from a user description | | |
 | [program-design](./program-design/SKILL.md) | Change-scoped program design: code shape, types, call flow, file layout, vertical slices. | | |
 | [system-architecture](./system-architecture/SKILL.md) | System-scoped architecture: components, data, inward dependencies, tech stack as plugins. | | |
