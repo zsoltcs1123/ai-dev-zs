@@ -26,8 +26,6 @@ coding rules    ← *.mdc, linters, style guides
 | Simplification | `simplicity` |
 | Package placement, SRP, coupling without a written rule | `structure` |
 
-On conflict between layers, **principles** beat **conventions**, and **conventions** beat **coding rules**.
-
 ## Discovery
 
 | Layer | Sources |

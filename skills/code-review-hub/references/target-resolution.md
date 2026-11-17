@@ -1,6 +1,6 @@
 # Target resolution
 
-Resolve the review target once. Fill a **Target brief** and pass that brief to every dimension (subagent or inline).
+Resolve the review target once; fill a **Target brief** for every dimension. The coordinator runs this step from [SKILL.md](../SKILL.md).
 
 If the invocation and obvious chat context (open files, paths, linked PR) do not pin down the target, stop and ask. Do not guess.
 

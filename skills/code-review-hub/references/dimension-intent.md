@@ -27,11 +27,7 @@ Check requirements fit for the Target brief. Compare spec, ticket, acceptance cr
 
 If you have no stated intent and no narrative, skip speculative critique. In **Skipped**, write `no stated requirements; contract-only check`. Report only clear narrative mismatches (for example the PR says "fix login" but the diff only reformats unrelated files).
 
-## Discovery
-
-| Purpose | Sources |
-| ------- | ------- |
-| Spec | Brief acceptance criteria and goal; ticket or PRD in Notes; linked issues; PR description; requirement docs in the repo |
+Spec sources: brief acceptance criteria and goal; ticket or PRD in Notes; linked issues; PR description; requirement docs in the repo.
 
 ## Severity
 

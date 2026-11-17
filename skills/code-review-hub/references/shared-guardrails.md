@@ -1,8 +1,6 @@
 # Shared guardrails
 
-Rules for report-only dimension runs. The coordinator loads this file for inline review only. On the default path, subagents load it once via the prompt in [subagent.md](subagent.md).
-
-Report only. Do not edit code.
+Report-only dimension runs: coordinator loads this on the inline path; subagents load it via [subagent.md](subagent.md) on the default path. Do not edit code.
 
 ## Spec and scope
 

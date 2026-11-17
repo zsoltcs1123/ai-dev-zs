@@ -28,7 +28,7 @@ Read and follow:
 1. <hub-skill-dir>/references/shared-guardrails.md
 2. <hub-skill-dir>/references/dimension-<dimension-id>.md
 
-Return your final message with exactly these headings:
+Return your final message with exactly these headings (per shared-guardrails Report shape):
 
 ## Summary
 

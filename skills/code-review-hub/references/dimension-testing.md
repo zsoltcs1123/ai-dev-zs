@@ -16,7 +16,7 @@ Review tests for the Target brief. Check coverage, value, and alignment with ris
 | Wrong production behavior | `implementation` or `intent` |
 | Untestable structure | `structure` (mention test blockage only when design blocks tests; the primary finding stays in **structure**) |
 
-Use **Acceptance criteria** in the brief. Flag missing coverage for behavior the acceptance criteria cover. Do not demand tests for out-of-scope work.
+Use brief **Acceptance criteria**; do not demand tests for out-of-scope work.
 
 ## Discovery
 

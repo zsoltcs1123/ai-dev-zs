@@ -4,14 +4,7 @@ Dedup, sort, and format dimension outputs into one merged report.
 
 ## Inputs
 
-Each report-only run returns:
-
-- `## Summary`
-- `## Findings` with lines `severity | category | file:line | clause`
-- `## Totals`
-- `## Skipped`
-
-Severity labels are comparable across dimensions: each subagent used its dimension file **Severity** section with the shared scale in [shared-guardrails.md](shared-guardrails.md). Do not re-rank when merging.
+Dimension outputs follow [shared-guardrails.md](shared-guardrails.md) **Report shape**. Severity labels are comparable: each run used its dimension **Severity** bands with the shared scale there. Do not re-rank when merging.
 
 ## Primary owner (dedup)
 
@@ -27,13 +20,7 @@ When two dimensions flag the same `file:line` (or overlapping range) for one fix
 | Simplifiable code without behavior loss | `simplicity` |
 | Layout, naming, SRP, dependencies, abstraction, oddities | `structure` |
 
-When spec-named behavior is wrong, **`intent`** is primary. Drop the duplicate **`implementation`** row if the fix is the same.
-
-When you see an injection or authorization flaw, **`security`** is primary over **`implementation`**.
-
-When a convention doc names the violation, **`conformance`** is primary. Drop the **`structure`** duplicate unless the fix differs (rename versus move module).
-
-When SRP fails and no doc applies, **`structure`** is primary.
+When the fix is the same but dimensions disagree: wrong spec-named behavior → **`intent`** over **`implementation`**; injection or auth flaw → **`security`** over **`implementation`**; convention doc names the violation → **`conformance`** over **`structure`** unless fixes differ (rename versus move).
 
 When fixes differ (for example a logic fix and a module move), keep two rows and set `source` to both dimension ids.
 
@@ -56,6 +43,4 @@ Deduplicate lightly within a single dimension when needed.
 2. **Findings.** One line per issue: severity, `source` (dimension id or comma-separated ids), category, clause, `file:line`. Group by severity by default. Add a short **Coverage** line with `none` for empty dimensions when that helps. State missing discovery docs once.
 3. **Totals.** `Major N · Medium N · Minor N`. Recompute after dedup. Do not sum per-dimension totals.
 
-Write one clause per finding. Save detail for a fix pass when the user runs one later.
-
-Produce one merged finding list. Do not split it back by dimension.
+Save detail for a fix pass when the user runs one later. Produce one merged finding list; do not split it back by dimension.

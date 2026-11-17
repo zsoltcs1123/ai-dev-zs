@@ -48,7 +48,7 @@ One dimension equals one subagent run.
 ## Coordinator spine
 
 1. **Dimensions.** Pick rows from the intent table above.
-2. **Target.** Read [references/target-resolution.md](references/target-resolution.md). Build one **Target brief**. Copy **Stated goal**, **Acceptance criteria**, and **Out of scope** from the ticket, PR, or user when you can find them. If the invocation and chat context do not pin down the target, ask. Do not guess.
+2. **Target.** Read [references/target-resolution.md](references/target-resolution.md) and build one **Target brief** (copy spec fields from ticket, PR, or user when discoverable).
 3. **Review runs (report-only).** Default: read [references/subagent.md](references/subagent.md) and launch one Task per selected dimension. Run them in parallel when the harness allows it. Set `model` to `grok-4.7-high` when the Task tool lists that model. Do not read dimension reference files yourself on this path; the subagent prompt assigns them.
    - **Inline path:** Read [references/shared-guardrails.md](references/shared-guardrails.md) once. Read only the dimension files you selected. Run report-only with the same Target brief and the report shape from shared guardrails.
 4. **Wait and recover.** Wait for every subagent. On failure, fix the prompt or Target brief and retry once per failed subagent. If it still fails, tell the user what blocked the run and offer the inline path.
@@ -57,7 +57,7 @@ One dimension equals one subagent run.
 ## Guardrails
 
 - Subagents do not edit code.
-- When scope spans more than 20 files, ask for a full review or a focused scope before step 3.
+- Large scope: follow [target-resolution.md](references/target-resolution.md) **Large diff** before step 3.
 
 ## Tools
 

@@ -16,9 +16,7 @@ Ask whether changed code in the Target brief can shrink a lot without losing beh
 | Deleting or consolidating tests                | `testing`         |
 | Logic bugs                                     | `implementation`  |
 
-Do not flag simplification when acceptance criteria or security require the complexity. Note justified complexity in **Skipped**.
-
-When correctness, security, or spec conflict with simplification, do not flag simplification. Correctness and spec win over simplification.
+Do not flag simplification when acceptance criteria, security, correctness, or spec require the complexity; note justified complexity in **Skipped**.
 
 ## Discovery
 

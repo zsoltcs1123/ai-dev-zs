@@ -5,16 +5,14 @@ Organizational review for the Target brief. Run all six internal checks in one r
 ## Guardrails
 
 - Evaluate all six internal checks below.
-- Do not flag pre-existing issues outside the diff unless they are **Major** and the change makes them worse.
+- Pre-existing issues outside the diff: same rule as [shared-guardrails.md](shared-guardrails.md) **Pre-existing issues**.
 - Skip cosmetic naming unless it is ambiguous or inconsistent with siblings.
 - Do not change behavior with structural fixes unless the user confirms.
 - Do not report bugs, security issues, spec gaps, or test gaps. Other dimensions own those topics.
 
 ## Authority on conflict
 
-When a written standard conflicts with sound judgment, severity is **Medium**. Good practice in code is not wrong.
-
-Prefer **principles**, then **conventions**, then general judgment. **conformance** owns explicit doc violations. **structure** owns neighbor and layout judgment when docs are silent.
+**conformance** owns explicit doc violations (including doc-versus-judgment conflicts; see that dimension **Severity**). **structure** owns neighbor and layout judgment when docs are silent.
 
 ## Discovery
 
@@ -30,7 +28,7 @@ When convention or principles docs are missing, say so once in **Skipped**. Use 
 
 ## Reading scope
 
-You may read outside the diff for layout, naming, and dependencies. Flag only in-scope issues, except **Major** pre-existing hazards the change worsens or extends.
+You may read outside the diff for layout, naming, and dependencies. Flag only in-scope issues, except pre-existing hazards that meet shared **Pre-existing issues** rules.
 
 ## Severity
 
@@ -54,10 +52,8 @@ Judge **how likely the layout misleads the next change** and **cost when it does
 
 ### Naming
 
-Use domain language. Names should reveal responsibility.
-
-1. File names match neighbors, not `stuff.ts` or `manager.go`.
-2. Vocabulary is precise. Avoid generic `Manager`, `Handler`, `Data`, or `Utils` unless the domain uses them.
+1. File names use domain language, match neighbors, not `stuff.ts` or `manager.go`.
+2. Vocabulary is precise; avoid generic `Manager`, `Handler`, `Data`, or `Utils` unless the domain uses them.
 3. Public names hide implementation when siblings do.
 4. Casing, suffixes, and prefixes match the module.
 5. One concept, one name. Flag `User` versus `Account` without a documented distinction.
