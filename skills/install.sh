@@ -20,6 +20,7 @@
 #   ./install.sh --global        Install into ~/.agents/skills/
 #   ./install.sh --list          List installable skills and exit
 #   ./install.sh --skip-external Install local skills only (skip upstream fetches)
+#   ./install.sh --skill NAME    Install only NAME (--skill may be repeated)
 #
 # Re-run to refresh installed copies and pull latest external skills.
 
@@ -34,11 +35,30 @@ target=""
 global=false
 skip_external=false
 project_root=""
+selected_skills=()
 
-for arg in "$@"; do
-  case "$arg" in
-    --global) global=true ;;
-    --skip-external) skip_external=true ;;
+skill_selected() {
+  local name="$1"
+  if [[ ${#selected_skills[@]} -eq 0 ]]; then
+    return 0
+  fi
+  local s
+  for s in "${selected_skills[@]}"; do
+    [[ "$s" == "$name" ]] && return 0
+  done
+  return 1
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --global)
+      global=true
+      shift
+      ;;
+    --skip-external)
+      skip_external=true
+      shift
+      ;;
     --list)
       echo "Installable skills:"
       while IFS= read -r line || [[ -n "$line" ]]; do
@@ -53,8 +73,30 @@ for arg in "$@"; do
       done
       exit 0
       ;;
-    --*) echo "Unknown option: $arg" >&2; exit 1 ;;
-    *) target="$arg" ;;
+    --skill)
+      if [[ $# -lt 2 ]]; then
+        echo "Missing skill name after --skill" >&2
+        exit 1
+      fi
+      selected_skills+=("$2")
+      shift 2
+      ;;
+    --skill=*)
+      selected_skills+=("${1#--skill=}")
+      shift
+      ;;
+    --*)
+      echo "Unknown option: $1" >&2
+      exit 1
+      ;;
+    *)
+      if [[ -n "$target" ]]; then
+        echo "Unexpected extra argument: $1" >&2
+        exit 1
+      fi
+      target="$1"
+      shift
+      ;;
   esac
 done
 
@@ -211,6 +253,7 @@ fetch_external_skill() {
 }
 
 installed=0
+installed_skill_names=()
 
 if ! $skip_external; then
   while IFS= read -r line || [[ -n "$line" ]]; do
@@ -223,14 +266,19 @@ if ! $skip_external; then
       exit 1
     fi
 
+    skill_selected "$name" || continue
+
     fetch_external_skill "$name" "$repo" "$path" "$ref"
     patch_installed_skill "$name"
     plugin_name=""
     [[ "$repo" == "mattpocock/skills" ]] && plugin_name="mattpocock-skills"
     register_skill_lock "$name" "$repo" "github" "https://github.com/${repo}.git" "$ref" "${path}/SKILL.md" "$plugin_name"
     echo "  fetch: $name (from $repo/$path@$ref) -> $dest/$name"
+    installed_skill_names+=("$name")
     installed=$((installed + 1))
   done < "$LOCK_FILE"
+elif [[ ${#selected_skills[@]} -gt 0 ]]; then
+  :
 else
   echo "  skip: external skills (--skip-external)"
 fi
@@ -238,12 +286,38 @@ fi
 for d in "$SCRIPT_DIR"/*/; do
   [ -f "${d}SKILL.md" ] || continue
   name="$(basename "$d")"
+  skill_selected "$name" || continue
   rm -rf "$dest/$name"
   cp -R "$d" "$dest/$name"
   patch_installed_skill "$name"
   register_skill_lock "$name" "$LOCAL_REPO" "github" "$LOCAL_REPO_URL" "main" "skills/${name}/SKILL.md"
   echo "  copy: $name -> $dest/$name"
+  installed_skill_names+=("$name")
   installed=$((installed + 1))
 done
+
+if [[ ${#selected_skills[@]} -gt 0 ]]; then
+  for want in "${selected_skills[@]}"; do
+    found=false
+    for got in "${installed_skill_names[@]}"; do
+      [[ "$want" == "$got" ]] && found=true
+    done
+    if ! $found; then
+      if $skip_external; then
+        while IFS= read -r line || [[ -n "$line" ]]; do
+          [[ "$line" =~ ^[[:space:]]*# ]] && continue
+          [[ -z "${line//[[:space:]]/}" ]] && continue
+          read -r ext_name _ _ _ <<< "$line"
+          if [[ "$ext_name" == "$want" ]]; then
+            echo "Skill $want is external; omit --skip-external or run without --skill filtering" >&2
+            exit 1
+          fi
+        done < "$LOCK_FILE"
+      fi
+      echo "Unknown skill: $want (see --list)" >&2
+      exit 1
+    fi
+  done
+fi
 
 echo "Installed $installed skill(s) into $dest"

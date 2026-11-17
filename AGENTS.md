@@ -23,6 +23,7 @@ Do not commit `.agents/skills/` — local install target (gitignored). Re-run in
 ./skills/install.sh /path/to/app       # specific project
 ./skills/install.sh --global           # user → ~/.agents/skills/
 ./skills/install.sh --skip-external    # local skills only (skip upstream fetches)
+./skills/install.sh --skill NAME       # one skill only (repeat --skill for several)
 ./skills/install.sh --list             # list installable skills
 ```
 
