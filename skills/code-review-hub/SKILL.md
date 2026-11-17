@@ -5,7 +5,7 @@ disable-model-invocation: true
 compatibility: Default path uses the Cursor Task tool for subagents. Use the inline path when Task is unavailable or the user asks for in-chat review.
 metadata:
   author: zs
-  version: "3.0"
+  version: "0.1"
 ---
 
 # Code review hub
@@ -20,30 +20,30 @@ Open a reference only at the step that names it.
 
 One dimension equals one subagent run.
 
-| Dimension id | Reference |
-| ------------ | --------- |
+| Dimension id     | Reference                                                                        |
+| ---------------- | -------------------------------------------------------------------------------- |
 | `implementation` | [references/dimension-implementation.md](references/dimension-implementation.md) |
-| `intent` | [references/dimension-intent.md](references/dimension-intent.md) |
-| `conformance` | [references/dimension-conformance.md](references/dimension-conformance.md) |
-| `security` | [references/dimension-security.md](references/dimension-security.md) |
-| `testing` | [references/dimension-testing.md](references/dimension-testing.md) |
-| `simplicity` | [references/dimension-simplicity.md](references/dimension-simplicity.md) |
-| `structure` | [references/dimension-structure.md](references/dimension-structure.md) |
+| `intent`         | [references/dimension-intent.md](references/dimension-intent.md)                 |
+| `conformance`    | [references/dimension-conformance.md](references/dimension-conformance.md)       |
+| `security`       | [references/dimension-security.md](references/dimension-security.md)             |
+| `testing`        | [references/dimension-testing.md](references/dimension-testing.md)               |
+| `simplicity`     | [references/dimension-simplicity.md](references/dimension-simplicity.md)         |
+| `structure`      | [references/dimension-structure.md](references/dimension-structure.md)           |
 
 ### Map user intent to dimensions
 
-| User signal | Dimensions |
-| ----------- | ---------- |
-| Bare `code-review-hub`, "full review", "review my changes", "review my PR" | All seven, in parallel |
-| Bugs, logic, regressions | `implementation`, `intent` |
-| Spec, ticket, acceptance criteria, scope | `intent`. Add `testing` when the user mentions tests. |
-| Lint, style, conventions, principles | `conformance` |
-| Security | `security` |
-| Tests, coverage | `testing` |
-| Simplify, complexity, "can this be smaller" | `simplicity` |
-| Layout, naming, modules, boundaries, organization | `structure` |
-| Quality (vague) | `implementation`, `intent`, `conformance`, `testing` |
-| Explicit dimension ids (for example `security structure`) | As given |
+| User signal                                                                | Dimensions                                            |
+| -------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Bare `code-review-hub`, "full review", "review my changes", "review my PR" | All seven, in parallel                                |
+| Bugs, logic, regressions                                                   | `implementation`, `intent`                            |
+| Spec, ticket, acceptance criteria, scope                                   | `intent`. Add `testing` when the user mentions tests. |
+| Lint, style, conventions, principles                                       | `conformance`                                         |
+| Security                                                                   | `security`                                            |
+| Tests, coverage                                                            | `testing`                                             |
+| Simplify, complexity, "can this be smaller"                                | `simplicity`                                          |
+| Layout, naming, modules, boundaries, organization                          | `structure`                                           |
+| Quality (vague)                                                            | `implementation`, `intent`, `conformance`, `testing`  |
+| Explicit dimension ids (for example `security structure`)                  | As given                                              |
 
 ## Coordinator spine
 
