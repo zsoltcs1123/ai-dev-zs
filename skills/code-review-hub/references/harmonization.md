@@ -45,6 +45,8 @@ Deduplicate lightly within a single dimension when needed.
 
 ## Merged report (present to user)
 
+Optional first line when reviewer model is not default: `Reviewer model: <slug>`.
+
 1. **Summary.** Combine dimension summaries into one to three sentences. Cover behavior, intent, and structure as needed. Do not list issues here.
 2. **Findings.** One line per issue: severity, `source` (dimension id or comma-separated ids), category, clause, `file:line`. Group by severity by default. Add a short **Coverage** line with `none` for empty dimensions when that helps. State missing discovery docs once.
 3. **Totals.** `Major N · Medium N · Minor N`. Recompute after dedup. Do not sum per-dimension totals.

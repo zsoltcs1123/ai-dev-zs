@@ -8,7 +8,13 @@ Launch one Task subagent per selected dimension. Run all selected dimensions in 
 
 ## Model
 
-Set `model` to `grok-4.7-high` when the Task tool lists that model. Otherwise omit `model` or use the harness default.
+Same Task `model` slug on every dimension run. Precedence: user override, then default.
+
+**User override:** Map the user's slug or natural name (Claude, Opus, Sonnet, Composer, GPT, Gemini, Grok; e.g. `claude-sonnet-5-5-high`) to a slug in this turn's Task allowlist. If unmapped or not allowed, list available models and hold Tasks until they pick a valid slug or drop the override.
+
+**Default:** `grok-4.7-high` when listed; else omit `model` or use harness default.
+
+Non-default slug: optional `Reviewer model:` line in merged report ([harmonization.md](harmonization.md)).
 
 ## Task parameters
 
