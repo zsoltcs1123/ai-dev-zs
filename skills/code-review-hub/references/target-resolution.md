@@ -40,6 +40,10 @@ Copy from ticket, PR, issue, or user message into the brief:
 
 Paste links, ticket ids, and PR description excerpts into **Notes**. Dimensions use this block to avoid false positives.
 
+### PR ticket discovery
+
+Branch or PR target, no user ticket/spec/AC, and GitHub CLI works for the repo: try once. Pull PR text and linkable GitHub issues into the brief. Off-GitHub ticket ids or URLs: **Notes** only unless the user gave another tool. On failure, continue with PR/git text. Do not invent requirements or block on unreachable external tickets.
+
 ## Target brief template
 
 Paste this block into each subagent prompt:

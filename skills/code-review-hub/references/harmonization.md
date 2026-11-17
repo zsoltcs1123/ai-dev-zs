@@ -6,6 +6,12 @@ Dedup, sort, and format dimension outputs into one merged report.
 
 Dimension outputs follow [shared-guardrails.md](shared-guardrails.md) **Report shape**. Severity labels are comparable: each run used its dimension **Severity** bands with the shared scale there. Do not re-rank when merging.
 
+## Coordinator transform
+
+Do not paste per-dimension **Findings** lines into the merged report as-is.
+
+For each row under a dimension's `## Findings`, parse `severity | category | file:line | clause`. Set `source` to that dimension id (the Task you launched, or the dimension file you ran on the inline path). Apply **Primary owner**, **Dedup rules**, and **Sort order** below. Emit rows in **Merged report** finding format: severity, `source`, category, clause, `file:line`.
+
 ## Primary owner (dedup)
 
 When two dimensions flag the same `file:line` (or overlapping range) for one fix, keep one row. Use this table:

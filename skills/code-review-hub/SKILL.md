@@ -2,17 +2,17 @@
 name: code-review-hub
 description: Hub for multi-dimension code review in one slash command. Maps user intent to dimensions, resolves the review target without guessing, runs one subagent per dimension, and merges one report. Use for "code-review-hub", "full review", "review my PR", or an explicit dimension list.
 disable-model-invocation: true
-compatibility: Default path uses the Cursor Task tool for subagents. Use the inline path when Task is unavailable or the user asks for in-chat review.
+compatibility: Default path uses the Cursor Task tool for subagents. Inline path when Task is unavailable or the user asks for in-chat review, no subagents, or review inline in this chat.
 metadata:
   author: zs
-  version: "0.1"
+  version: "0.2"
 ---
 
 # Code review hub
 
 ## Outcome
 
-Run the review dimensions you select against a resolved target. Publish one merged report. Stop when the report is delivered unless the user asks for more in chat.
+Run selected dimensions against a resolved target, then deliver one merged report (step 5). Stop unless the user asks for more in chat.
 
 Open a reference only at the step that names it.
 
@@ -42,24 +42,25 @@ One dimension equals one subagent run.
 | Tests, coverage                                                            | `testing`                                             |
 | Simplify, complexity, "can this be smaller"                                | `simplicity`                                          |
 | Layout, naming, modules, boundaries, organization                          | `structure`                                           |
-| Quality (vague)                                                            | `implementation`, `intent`, `conformance`, `testing`  |
+| Quality (vague)                                                            | `implementation`, `intent`, `conformance`, `testing` (omit `security`, `simplicity`, `structure` unless named) |
 | Explicit dimension ids (for example `security structure`)                  | As given                                              |
 
 ## Coordinator spine
 
 1. **Dimensions.** Pick rows from the intent table above.
 2. **Target.** Read [references/target-resolution.md](references/target-resolution.md) and build one **Target brief** (copy spec fields from ticket, PR, or user when discoverable).
-3. **Review runs (report-only).** Default: read [references/subagent.md](references/subagent.md) and launch one Task per selected dimension. Run them in parallel when the harness allows it. Set `model` to `grok-4.7-high` when the Task tool lists that model. Do not read dimension reference files yourself on this path; the subagent prompt assigns them.
-   - **Inline path:** Read [references/shared-guardrails.md](references/shared-guardrails.md) once. Read only the dimension files you selected. Run report-only with the same Target brief and the report shape from shared guardrails.
-4. **Wait and recover.** Wait for every subagent. On failure, fix the prompt or Target brief and retry once per failed subagent. If it still fails, tell the user what blocked the run and offer the inline path.
-5. **Merge and report.** Read [references/harmonization.md](references/harmonization.md). Dedup, sort, and present the merged report.
+3. **Review runs (report-only).** Default: read [references/subagent.md](references/subagent.md), resolve **Hub skill directory**, and launch one Task per selected dimension. Run them in parallel when the harness allows it. Set `model` to `grok-4.7-high` when the Task tool lists that model. Do not read dimension reference files yourself on this path; the subagent prompt assigns them.
+   - **Inline path:** Read [references/shared-guardrails.md](references/shared-guardrails.md) once. Run dimensions in table order (top to bottom in **Dimensions**). For each selected id: read its dimension reference, produce one full **Report shape** block for that id, then move to the next. Do not merge dimension outputs until step 5.
+4. **Wait and recover.** Wait for every subagent. On failure, classify it, fix that axis, and retry once per failed subagent: Task or tool error → check hub skill paths, repository path, and Task parameters in the prompt; empty or generic findings → enrich the Target brief (scope, spec fields, Notes); missing **Report shape** headings → resend the prompt template from [references/subagent.md](references/subagent.md). If it still fails, tell the user what blocked the run and offer the inline path.
+5. **Merge and report.** Read [references/harmonization.md](references/harmonization.md). Run **Coordinator transform**, then dedup, sort, and present the merged report.
 
 ## Guardrails
 
 - Subagents do not edit code.
-- Large scope: follow [target-resolution.md](references/target-resolution.md) **Large diff** before step 3.
+- Large scope: follow [references/target-resolution.md](references/target-resolution.md) **Large diff** before step 3.
 
 ## Tools
 
 - Git for scope: diff, default branch, checkout when the user names a PR or branch.
+- GitHub CLI for **PR ticket discovery** in target-resolution when the user gave no spec.
 - Task tool on the default path in step 3.
