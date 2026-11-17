@@ -57,6 +57,7 @@ Judge **how likely the layout misleads the next change** and **cost when it does
 3. Public names hide implementation when siblings do.
 4. Casing, suffixes, and prefixes match the module.
 5. One concept, one name. Flag `User` versus `Account` without a documented distinction.
+6. Type names match role: a `*Store` holds state, not a `*Service`; a `*Repository` loads and saves, not a `*Helper` or `*Utils`; a `*Client` calls out of process, not a `*Manager`; wire types use neighbor suffixes (`*Request`, `*Response`, `*Dto`), not a lone `*Model` when siblings do not.
 
 ### Responsibility
 
