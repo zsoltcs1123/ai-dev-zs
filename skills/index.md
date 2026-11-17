@@ -6,6 +6,8 @@
 | [architecture](./architecture/SKILL.md) | Change-scoped system architecture: components, contracts, data flows, inward dependencies. | | |
 | [capture-idea](./capture-idea/SKILL.md) | Captures an idea from freeform input or conversation as concise bullet points | | |
 | [code-review](./code-review/SKILL.md) | Reviews code changes against code quality, conventions, principles, security, testing, and spec conformance | | |
+| [code-review-hub](./code-review-hub/SKILL.md) | Hub: six-layer general and six-dimension structural review via subagents, merged report only | | |
+| [fix-code](./fix-code/SKILL.md) | Fix an explicit issue list from chat or a file; verify each item, interactive or batch | | |
 | [structural-review](./structural-review/SKILL.md) | Reviews code organization — layout, naming, responsibilities, dependencies, surface, and structural oddities | | |
 | [delivery](./delivery/SKILL.md) | Deliver an approved plan in an isolated git worktree or the main checkout. Repo facts cached in a durable markdown note outside the repo. | | |
 | [new-skill](./new-skill/SKILL.md) | Creates a portable Agent Skill from a user description | | |
