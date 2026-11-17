@@ -1,8 +1,8 @@
 # Target resolution
 
-Resolve the review target once, fill a **Target brief**, and pass that brief to every review run (subagent or inline).
+Resolve the review target once. Fill a **Target brief** and pass that brief to every dimension (subagent or inline).
 
-If the invocation and obvious chat context (open files, paths in the thread, linked PR) do not pin down the target, stop and ask. Do not guess.
+If the invocation and obvious chat context (open files, paths, linked PR) do not pin down the target, stop and ask. Do not guess.
 
 ## Target kinds
 
@@ -28,7 +28,17 @@ Try `origin/HEAD`, then `main`, then `master`.
 
 ## Large diff
 
-When scope spans more than 20 files, ask for a full review or a focus area before you launch subagents. If the user narrows afterward, update the brief to those paths only.
+When scope spans more than 20 files, ask for a full review or a focus area before you launch subagents. If the user narrows scope afterward, update the brief to those paths only.
+
+## Spec and context (required when discoverable)
+
+Copy from ticket, PR, issue, or user message into the brief:
+
+- **Stated goal.** One short paragraph.
+- **Acceptance criteria.** Bullet list when present; otherwise `none supplied`.
+- **Out of scope.** Stated items when present; otherwise `not stated`.
+
+Paste links, ticket ids, and PR description excerpts into **Notes**. Dimensions use this block to avoid false positives.
 
 ## Target brief template
 
@@ -40,14 +50,21 @@ Target kind: <file | module | feature | worktree | branch | service>
 Paths or diff mode: <path list, or branch changes | uncommitted changes | path-scoped diff>
 Base branch: <branch or PR diff only; omit otherwise>
 Staged or unstaged: <worktree kind only>
-Notes: <feature description, PR link, user constraints>
+
+Stated goal: <from user, PR, or ticket>
+Acceptance criteria:
+- <item>
+- or: none supplied
+Out of scope: <items or "not stated">
+
+Notes: <PR link, ticket, constraints, copied PR description snippets>
 ```
 
 ## Diff modes
 
 - **branch changes:** merge-base with the default branch, plus working tree changes when the kind requires them.
 - **uncommitted changes:** staged, unstaged, or both per the brief.
-- **path-scoped:** read and diff only listed paths. For the structural command, still read neighbors per [command-structural.md](command-structural.md).
+- **path-scoped:** read and diff only listed paths. For the `structure` dimension, still read neighbors per [dimension-structure.md](dimension-structure.md).
 
 ## No git or empty scope
 

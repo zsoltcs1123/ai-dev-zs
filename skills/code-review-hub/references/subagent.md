@@ -1,31 +1,32 @@
 # Subagents
 
-Task launch for report-only command runs.
+Launch Task subagents for report-only dimension runs.
 
 ## Defaults
 
-One Task subagent per selected command. Launch both in parallel when the user selects `general` and `structural`. Use `run_in_background: false` unless the user asks for a background run.
+Launch one Task subagent per selected dimension. Run all selected dimensions in parallel unless the harness limits concurrency. Set `run_in_background: false` unless the user asks for a background run.
 
 ## Model
 
-- Set `model` to `grok-4.7-high` when the Task tool lists it.
-- Otherwise omit `model` or use the harness default.
+Set `model` to `grok-4.7-high` when the Task tool lists that model. Otherwise omit `model` or use the harness default.
 
 ## Task parameters
 
 - `subagent_type`: `generalPurpose`
-- `description`: short label, for example `code-review-hub general`
+- `description`: Short label, for example `code-review-hub intent`
 
 ## Prompt template
 
 ```text
-You are running the code-review-hub "<command>" command. Report only. Do not edit code.
+You are running the code-review-hub "<dimension-id>" dimension. Report only. Do not edit code.
 
 Repository: <absolute path>
 Target brief:
 <paste Target brief>
 
-Read and follow <hub-skill-dir>/references/command-<command>.md.
+Read and follow:
+1. <hub-skill-dir>/references/shared-guardrails.md
+2. <hub-skill-dir>/references/dimension-<dimension-id>.md
 
 Return your final message with exactly these headings:
 
@@ -38,7 +39,7 @@ Return your final message with exactly these headings:
 Major N · Medium N · Minor N
 
 ## Skipped
-(layers or dimensions or docs not found, or "none")
+(missing docs, unstated requirements, or "none")
 ```
 
-Replace `<command>` with `general` or `structural`.
+Replace `<dimension-id>` with one of: `implementation`, `intent`, `conformance`, `security`, `testing`, `simplicity`, `structure`.
