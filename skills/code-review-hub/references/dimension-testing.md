@@ -2,8 +2,6 @@
 
 Review tests for the Target brief. Check coverage, value, and alignment with risk and acceptance criteria.
 
-Read [shared-guardrails.md](shared-guardrails.md) first.
-
 ## Owns
 
 - Missing tests for risky or spec-backed behavior in the change set.
@@ -26,6 +24,14 @@ Use **Acceptance criteria** in the brief. Flag missing coverage for behavior the
 | Spec | Brief acceptance criteria; testing sections in CONTRIBUTING or conventions |
 | Layout | Whether tests mirror production layout when the repo does |
 
+## Severity
+
+Judge **regression risk without a safety net** and **cost of false confidence**. Do not set severity from test type (unit versus integration) or file name alone.
+
+- **Major:** Change introduces or alters behavior that will break in production and has no test that would fail first; acceptance-criteria behavior is unguarded.
+- **Medium:** Tests exist but are misleading, brittle enough to block fixes, or omit a plausible failure mode this change adds.
+- **Minor:** Coverage gap on low-risk paths; extra test would help but absence does not block merge for this diff.
+
 ## Report
 
-Follow [shared-guardrails.md](shared-guardrails.md). Set `category` to `testing`.
+Set `category` to `testing`.

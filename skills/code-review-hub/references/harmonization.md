@@ -11,6 +11,8 @@ Each report-only run returns:
 - `## Totals`
 - `## Skipped`
 
+Severity labels are comparable across dimensions: each subagent used its dimension file **Severity** section with the shared scale in [shared-guardrails.md](shared-guardrails.md). Do not re-rank when merging.
+
 ## Primary owner (dedup)
 
 When two dimensions flag the same `file:line` (or overlapping range) for one fix, keep one row. Use this table:

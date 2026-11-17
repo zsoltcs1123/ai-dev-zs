@@ -64,7 +64,7 @@ Notes: <PR link, ticket, constraints, copied PR description snippets>
 
 - **branch changes:** merge-base with the default branch, plus working tree changes when the kind requires them.
 - **uncommitted changes:** staged, unstaged, or both per the brief.
-- **path-scoped:** read and diff only listed paths. For the `structure` dimension, still read neighbors per [dimension-structure.md](dimension-structure.md).
+- **path-scoped:** read and diff only listed paths. When `structure` is in the run, add to **Notes** that reviewers must read sibling modules at the same tree level (not only listed paths).
 
 ## No git or empty scope
 

@@ -2,8 +2,6 @@
 
 Check implementation soundness against the Target brief: logic, semantics, error paths, concurrency, API misuse, and performance from bad algorithms or data shapes.
 
-Read [shared-guardrails.md](shared-guardrails.md) first.
-
 ## Owns
 
 - Logic bugs, off-by-one errors, wrong operators, unreachable code, broken error handling.
@@ -36,6 +34,16 @@ When spec or acceptance criteria define technical behavior and the code fails th
 
 Note when the stated scope is refactor-only with no behavior claims and you only checked for obvious accidental behavior change. Send narrative mismatches to **intent**.
 
+## Severity
+
+Judge **likelihood** once the change is merged and **harm** if the code is wrong. Do not set severity from the defect type (off-by-one, race, API misuse, and so on).
+
+- **Major:** Wrong outcomes on paths this change makes common; data corruption or loss is plausible; hard failure or clear behavior regression versus base for the touched flow.
+- **Medium:** Failure needs a realistic production trigger (input, load, timing) but is not exotic; users get wrong results or silent failures without an obvious crash; noticeable perf hit on a path this change uses.
+- **Minor:** Narrow trigger, easy workaround, or hardening that does not change behavior users already rely on.
+
+When two defects look similar on paper, rank by who gets hurt and how often, not by which line of the checklist they matched.
+
 ## Report
 
-Follow [shared-guardrails.md](shared-guardrails.md). Set `category` to `implementation`.
+Set `category` to `implementation`.

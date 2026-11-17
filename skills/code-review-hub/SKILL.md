@@ -14,11 +14,11 @@ metadata:
 
 Run the review dimensions you select against a resolved target. Publish one merged report. Stop when the report is delivered unless the user asks for more in chat.
 
-Read a linked reference file when a step below points to it.
+Open a reference only at the step that names it.
 
 ## Dimensions
 
-One dimension equals one subagent run. Every dimension reads [references/shared-guardrails.md](references/shared-guardrails.md) first.
+One dimension equals one subagent run.
 
 | Dimension id | Reference |
 | ------------ | --------- |
@@ -49,8 +49,8 @@ One dimension equals one subagent run. Every dimension reads [references/shared-
 
 1. **Dimensions.** Pick rows from the intent table above.
 2. **Target.** Read [references/target-resolution.md](references/target-resolution.md). Build one **Target brief**. Copy **Stated goal**, **Acceptance criteria**, and **Out of scope** from the ticket, PR, or user when you can find them. If the invocation and chat context do not pin down the target, ask. Do not guess.
-3. **Review runs (report-only).** Default: read [references/subagent.md](references/subagent.md). Launch one Task subagent per selected dimension. Run them in parallel when the harness allows it. Set `model` to `grok-4.7-high` when the Task tool lists that model.
-   - **Inline path:** If Task is unavailable or the user wants in-chat review, read each selected dimension reference and run report-only with the same Target brief.
+3. **Review runs (report-only).** Default: read [references/subagent.md](references/subagent.md) and launch one Task per selected dimension. Run them in parallel when the harness allows it. Set `model` to `grok-4.7-high` when the Task tool lists that model. Do not read dimension reference files yourself on this path; the subagent prompt assigns them.
+   - **Inline path:** Read [references/shared-guardrails.md](references/shared-guardrails.md) once. Read only the dimension files you selected. Run report-only with the same Target brief and the report shape from shared guardrails.
 4. **Wait and recover.** Wait for every subagent. On failure, fix the prompt or Target brief and retry once per failed subagent. If it still fails, tell the user what blocked the run and offer the inline path.
 5. **Merge and report.** Read [references/harmonization.md](references/harmonization.md). Dedup, sort, and present the merged report.
 
@@ -58,7 +58,6 @@ One dimension equals one subagent run. Every dimension reads [references/shared-
 
 - Subagents do not edit code.
 - When scope spans more than 20 files, ask for a full review or a focused scope before step 3.
-- Severity and pre-existing issue rules live in [references/shared-guardrails.md](references/shared-guardrails.md).
 
 ## Tools
 

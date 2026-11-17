@@ -2,8 +2,6 @@
 
 Ask whether changed code in the Target brief can shrink a lot without losing behavior, spec, or acceptance criteria.
 
-Read [shared-guardrails.md](shared-guardrails.md) first.
-
 ## Owns
 
 - Redundant branches, dead code, duplicate logic in the diff, unnecessary indirection or wrappers.
@@ -20,7 +18,7 @@ Read [shared-guardrails.md](shared-guardrails.md) first.
 
 Do not flag simplification when acceptance criteria or security require the complexity. Note justified complexity in **Skipped**.
 
-When correctness, security, or spec conflict with simplification, do not flag simplification.
+When correctness, security, or spec conflict with simplification, do not flag simplification. Correctness and spec win over simplification.
 
 ## Discovery
 
@@ -28,6 +26,14 @@ When correctness, security, or spec conflict with simplification, do not flag si
 | ------- | ---------------------------------------------------- |
 | Scope   | Brief stated goal, acceptance criteria, out of scope |
 
+## Severity
+
+Judge **ongoing cost to understand and change** this code. Do not set severity from construct type (wrapper, branch, helper). Prefer **Medium** when unsure.
+
+- **Major:** Duplication or indirection will reliably cause the next bug or bad merge; large removable chunk with no behavior or acceptance-criteria loss (rare).
+- **Medium:** Readers will repeatedly misread control flow; fold removes real mental load or defect surface without changing contracts.
+- **Minor:** Cosmetic tidy; saves a few lines; merge is fine without the simplification.
+
 ## Report
 
-Follow [shared-guardrails.md](shared-guardrails.md). Set `category` to `simplicity`.
+Set `category` to `simplicity`.

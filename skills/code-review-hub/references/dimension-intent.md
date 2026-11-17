@@ -2,8 +2,6 @@
 
 Check requirements fit for the Target brief. Compare spec, ticket, acceptance criteria, scope, and the stated change narrative to what the code actually does.
 
-Read [shared-guardrails.md](shared-guardrails.md) first.
-
 ## Owns
 
 - Gaps against a supplied spec, ticket, PRD, or acceptance criteria.
@@ -35,6 +33,14 @@ If you have no stated intent and no narrative, skip speculative critique. In **S
 | ------- | ------- |
 | Spec | Brief acceptance criteria and goal; ticket or PRD in Notes; linked issues; PR description; requirement docs in the repo |
 
+## Severity
+
+Judge **stakeholder surprise** and **delivery risk** if this merges as-is. Do not set severity from the kind of gap (spec versus scope versus narrative).
+
+- **Major:** Stated acceptance criteria or committed scope will fail in production; work clearly violates **Out of scope**; users or integrators get different behavior than **Notes** or the PR promise.
+- **Medium:** Requirement is partly met; scope bleeds in ways that will confuse the next change; story in the brief no longer matches what shipped.
+- **Minor:** Doc or comment drift; thin brief so impact is unclear; fix is tracking polish, not product risk.
+
 ## Report
 
-Follow [shared-guardrails.md](shared-guardrails.md). Set `category` to `intent`.
+Set `category` to `intent`.

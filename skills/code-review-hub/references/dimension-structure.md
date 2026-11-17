@@ -2,8 +2,6 @@
 
 Organizational review for the Target brief. Run all six internal checks in one report.
 
-Read [shared-guardrails.md](shared-guardrails.md) first.
-
 ## Guardrails
 
 - Evaluate all six internal checks below.
@@ -36,9 +34,11 @@ You may read outside the diff for layout, naming, and dependencies. Flag only in
 
 ## Severity
 
-- **Major:** Misleading boundaries or layers. Misleading module-boundary names. Catch-all modules added or grown. Cycles or layer crossings that break documented layering.
-- **Medium:** SRP problems judged structurally (do not duplicate **conformance** doc line items). Coupling or weak cohesion. Neighbor inconsistency. Wrong abstraction level.
-- **Minor:** Small naming or placement wins; optional splits or renames.
+Judge **how likely the layout misleads the next change** and **cost when it does**. Do not set severity from check name (Layout, Naming, Dependencies, and so on). Do not duplicate **conformance** doc line items.
+
+- **Major:** Structure will cause wrong-layer changes, forbidden dependencies, or repeated edits in catch-alls; cycles or layer crossings break documented rules; names hide dangerous boundaries.
+- **Medium:** Neighbors diverge; coupling will spread; responsibility is split in ways that slow safe changes; wrong abstraction level for this repo.
+- **Minor:** Placement or naming improvement; optional split; merge is fine without restructuring.
 
 ## Internal checks
 
@@ -106,6 +106,4 @@ For an intentional oddity, note which doc would justify it. Do not invent requir
 
 ## Report
 
-1. **Summary.** Where code lives and how modules grew. Do not list problems.
-2. **Findings.** Set `category` to `structure: Layout`, `structure: Naming`, and so on.
-3. **Totals** and **Skipped** per [shared-guardrails.md](shared-guardrails.md).
+Set `category` to `structure: Layout`, `structure: Naming`, and so on. Summarize where code lives and how modules grew in **Summary** without listing problems.

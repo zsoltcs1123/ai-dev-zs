@@ -1,6 +1,6 @@
 # Subagents
 
-Launch Task subagents for report-only dimension runs.
+Launch Task subagents for report-only dimension runs. This file is the only wiring between shared guardrails and dimension references on the default path.
 
 ## Defaults
 

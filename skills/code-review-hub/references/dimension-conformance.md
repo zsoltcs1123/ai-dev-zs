@@ -2,8 +2,6 @@
 
 Check written and discovered rules, conventions, and principles for the Target brief. When those docs are absent, apply generic idiomatic patterns for the language and stack.
 
-Read [shared-guardrails.md](shared-guardrails.md) first.
-
 ## Owns
 
 Authority stack (highest wins on conflict):
@@ -44,6 +42,16 @@ When no convention or principles docs exist, say so once in **Skipped** and appl
 
 Skip cosmetic preferences unless convention docs require them.
 
+## Severity
+
+Judge **who suffers** and **what breaks next** if the violation stays. Do not set severity from whether the source was principles, conventions, or coding rules. A naming rule that leads the next editor to break auth can be **Major**; a quoted principle with no effect on this diff is not.
+
+- **Major:** Violation is likely to cause wrong behavior, unsafe operation, or the same costly mistake repeated across the repo.
+- **Medium:** Violation will confuse the next reader, spread inconsistency, or needs a doc fix (written standard conflicts with sound practice; flag the doc, not the good code).
+- **Minor:** Local drift; merge can proceed without fixing this violation.
+
+When a written standard conflicts with sound judgment on correctness, safety, or maintainability, flag the doc conflict as **Medium**. Do not mark the code wrong for following good practice.
+
 ## Report
 
-Follow [shared-guardrails.md](shared-guardrails.md). Set `category` to `conformance`, or `conformance: <layer>` when it helps (Coding rules, Conventions, Principles).
+Set `category` to `conformance`, or `conformance: <layer>` when it helps (Coding rules, Conventions, Principles).
