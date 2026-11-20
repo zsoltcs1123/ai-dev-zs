@@ -37,7 +37,17 @@ Read outward until new files stop turning up duplicate facts:
 3. **Series** — numbered docs, ADR sequences, skill collections, rule packs sharing a parent
 4. **Repo anchors** — root README, AGENTS.md, CLAUDE.md, skills index when the target is part of that ecosystem
 
+**Folder target:** per file, neighbourhood = other in-scope siblings plus items 1–4 from that file's location. Cross-target overlap belongs in **Folder synthesis → Cross-target**, not only per-file pointers.
+
 Record consulted files in **Snapshot**. Note **authoritative home** for each duplicated fact (newest ADR, spec section, skill outcome block, and so on).
+
+## Folder target workflow
+
+1. **Scope** — list in-scope prose paths; honour user includes/excludes.
+2. **Passes** — stable order (e.g. sorted paths); one file per pass, full single-file report subsection each time; no merge-into-one-blob.
+3. **Per pass** — full read; neighbourhood (siblings + outward); Keep, Cut / merge, Risks, verdict for that file only.
+4. **Synthesis** — cross-target dupes/conflicts, optional rollup, folder verdict if structure spans files.
+5. **Apply** — file by file; **move** across files only when user asked to apply the folder.
 
 ## Duplication handling
 
@@ -58,7 +68,7 @@ Each proposed cut:
 
 **ID:** CUT-1
 
-**Location:** heading or line range
+**Location:** file path (required for folder targets), then heading or line range
 
 **Kind:** duplicate | restatement | filler | generic | structural
 
@@ -85,6 +95,7 @@ When the user requests apply:
 
 ## Edge cases
 
+- **Folder target** — skip binary and non-prose unless included; huge trees: sample, state limitation, or ask to narrow scope
 - **Pasted text only, no path** — neighbourhood is thread plus anything the user names; say what was not checked
 - **Generated or huge files** — sample for patterns; report limitation; do not rewrite entire generated dumps without scope
 - **Mixed code blocks in a doc** — treat blocks as signal if they are the spec (commands, APIs); not a "source code" skip

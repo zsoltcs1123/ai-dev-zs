@@ -3,7 +3,7 @@
 | Skill | Description | External | Source |
 | ----- | ----------- | -------- | ------ |
 | [adr](./adr/SKILL.md) | Draft an Architecture Decision Record. Use when the user says "new ADR", "write an ADR", "record a decision", or "/adr". | | |
-| [agent-usefulness](./agent-usefulness/SKILL.md) | Audits a document for agent signal-to-noise, neighbourhood duplication, and safe cuts. Not source code. Use /agent-usefulness. | | |
+| [agent-usefulness](./agent-usefulness/SKILL.md) | Audits prose (file or folder) for signal-to-noise, duplication, safe cuts. Folder: one pass per file. /agent-usefulness. | | |
 | [architecture](./architecture/SKILL.md) | Change-scoped system architecture: components, contracts, data flows, inward dependencies. | | |
 | [capture-idea](./capture-idea/SKILL.md) | Captures an idea from freeform input or conversation as concise bullet points | | |
 | [code-review](./code-review/SKILL.md) | Reviews code changes against code quality, conventions, principles, security, testing, and spec conformance | | |
@@ -12,6 +12,7 @@
 | [structural-review](./structural-review/SKILL.md) | Reviews code organization — layout, naming, responsibilities, dependencies, surface, and structural oddities | | |
 | [delivery](./delivery/SKILL.md) | Deliver an approved plan in an isolated git worktree or the main checkout. Repo facts cached in a durable markdown note outside the repo. | | |
 | [new-skill](./new-skill/SKILL.md) | Creates a portable Agent Skill from a user description | | |
+| [pr-mergeability](./pr-mergeability/SKILL.md) | Score a GitHub PR on operational risk, impact, and maintainability risk; recommend a review action. Requires a github.com pull URL. | | |
 | [program-design](./program-design/SKILL.md) | Change-scoped program design: code shape, types, call flow, file layout, vertical slices. | | |
 | [system-architecture](./system-architecture/SKILL.md) | System-scoped architecture: components, data, inward dependencies, tech stack as plugins. | | |
 | [project-seed](./project-seed/SKILL.md) | Explores a project idea and produces a seed document — enough to create and bootstrap a new code repository | | |

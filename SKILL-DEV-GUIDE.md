@@ -13,6 +13,10 @@ So a good skill gives the agent four things, and little else:
 3. **Tools** — what the model may use, leaving _when_ and _how_ to the model.
 4. **Coordination pattern** — only if the skill is multi-agent by design: how the agents divide and hand off work.
 
+### Self-containment
+
+Each skill is **self-contained**: instructions and supporting files live only under that skill's directory. Do not reference other Agent Skills (names, `/slash` commands, or install paths) unless the author explicitly opts in. Relative links to `references/`, `scripts/`, and `assets/` inside the same skill are fine. Generic external URLs (specs, product docs) are fine when the task needs them.
+
 ## Format
 
 The skills must adhere to the format specified by [agentskills.io](https://agentskills.io/specification).
