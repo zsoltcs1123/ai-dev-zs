@@ -4,7 +4,7 @@ Agent skills repo. Portable across Cursor, Codex, Copilot, Gemini, Cline, and ot
 
 ## Authoring
 
-Read [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) first.
+Read [skills/new-skill/references/skill-dev-guide.md](./skills/new-skill/references/skill-dev-guide.md) first (or use `/new-skill`).
 
 Skills must conform to the [Agent Skills specification](https://agentskills.io/specification).
 
@@ -54,4 +54,4 @@ Hook (once per clone): `git config core.hooksPath .githooks`
 | [skills/index.md](./skills/index.md) | Skill catalog |
 | [skills/external.lock](./skills/external.lock) | Upstream pointers for external skills |
 | [skills/install.sh](./skills/install.sh) | Installer |
-| [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) | How to write skills |
+| [skills/new-skill/references/skill-dev-guide.md](./skills/new-skill/references/skill-dev-guide.md) | How to write skills (`new-skill`) |

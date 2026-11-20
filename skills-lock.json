@@ -238,6 +238,20 @@
       "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
       "ref": "main",
       "skillPath": "skills/structural-review/SKILL.md"
+    },
+    "agent-usefulness": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/agent-usefulness/SKILL.md"
+    },
+    "pr-mergeability": {
+      "source": "zsoltcs1123/ai-dev-zs",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/zsoltcs1123/ai-dev-zs.git",
+      "ref": "main",
+      "skillPath": "skills/pr-mergeability/SKILL.md"
     }
   }
 }
