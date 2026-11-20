@@ -40,48 +40,57 @@ Does not by itself trigger architecture review; use it to deepen code review or 
 
 Use PR description, labels, and linked tickets when the diff understates rollout.
 
-## Review actions
+## Canonical review actions
+
+Report **Base action** and **Recommended action** using **only** these four strings (exact spelling and casing):
+
+1. `Merge if CI passes`
+2. `Targeted review`
+3. `Full code review`
+4. `Full code review and architecture review`
 
 | Action | When to use |
 | ------ | ----------- |
 | **Merge if CI passes** | Land without a dedicated review pass beyond automation. Honor branch protection and required reviewers when the repo enforces them. |
 | **Targeted review** | One reviewer or owning team checks named paths or themes; list them in **Review focus**. |
 | **Full code review** | Normal PR review: logic, tests, conventions, security smell, intent match. |
-| **Architecture review** | System-context reviewer: boundaries, data flow, contracts, migration and rollback, cross-service effects. Structural or platform changes, not typos. |
+| **Full code review and architecture review** | Full code review plus system-context review: boundaries, data flow, contracts, migration and rollback, cross-service effects. |
 
 Automation does not replace mandatory human reviewers when the repo or matrix requires them.
 
 ## Base action matrix
 
-Row = **operational risk**, column = **impact**. Cell = **base action**.
+Row = **operational risk**, column = **impact**. Cell = **base action** (canonical string only).
 
 | Operational risk \\ Impact | Low impact | Medium impact | High impact |
 | ------------------------- | ---------- | ------------- | ----------- |
-| **Low** | Merge if CI passes | Merge if CI passes | Targeted review on customer-facing paths and rollback plan |
-| **Medium** | Targeted review on risk drivers | Full code review | Full code review; architecture review if boundaries or contracts change |
-| **High** | Full code review | Full code review; architecture review when structural | Architecture review and full code review before merge |
+| **Low** | Merge if CI passes | Merge if CI passes | Targeted review |
+| **Medium** | Targeted review | Full code review | Full code review and architecture review |
+| **High** | Full code review | Full code review and architecture review | Full code review and architecture review |
 
 ### Matrix notes
 
-- **Low operational risk, high impact:** Safe-looking code, important surface. Domain owner confirms behavior and rollout, not every line.
-- **Medium operational risk, low impact:** Small blast radius; still review risk drivers (security, data, concurrency).
-- **High operational risk, low impact:** Do not merge on size alone. Review scary parts even when few users touch them.
-- **High operational risk, high impact:** Release gate. Architecture review is mandatory when the matrix says so.
+- **Low operational risk, high impact:** Customer-facing paths and rollback plan go in **Review focus**; domain owner confirms behavior and rollout.
+- **Medium operational risk, low impact:** Small blast radius; **Review focus** on risk drivers (security, data, concurrency).
+- **Medium operational risk, high impact:** Architecture review when boundaries or contracts change; say so in **Review focus** or verdict line when unclear from the diff.
+- **High operational risk, low impact:** Do not merge on size alone. **Review focus** on scary parts even when few users touch them.
+- **High operational risk, medium impact:** Architecture review when the change is structural; name triggers in **Review focus**.
+- **High operational risk, high impact:** Release gate; architecture review is mandatory.
 
 ## Apply maintainability risk
 
-Ladder (lowest to highest):
+Ladder (lowest to highest; same strings as canonical actions):
 
 1. Merge if CI passes
 2. Targeted review
 3. Full code review
-4. Full code review with architecture review (only when base matrix already includes architecture review)
+4. Full code review and architecture review
 
 | Maintainability risk | Rule |
 | -------------------- | ---- |
 | **Low** | Use the base action. |
-| **Medium** | Bump **one** ladder step. Stop at step 4 if base action already includes architecture review. |
-| **High** | At least **full code review**. If base action already includes architecture review, keep it. |
+| **Medium** | Bump **one** ladder step. Stop at step 4 if base action is already step 4. |
+| **High** | At least **Full code review**. If base action is step 4, keep step 4. |
 
 Report **Base action** (matrix only) and **Recommended action** (after bump). When they differ, one-line why.
 
@@ -101,4 +110,4 @@ Hunt list while reading; band tables set scores. Not a mechanical checklist.
 
 - Red or pending required checks: **not merge-ready** regardless of matrix cell.
 - Draft PR: score risk and impact; merge is premature until marked ready.
-- Required reviewers or CODEOWNERS on touched paths: mention under **Review focus** even when the matrix says "merge if CI passes".
+- Required reviewers or CODEOWNERS on touched paths: mention under **Review focus** even when the matrix says `Merge if CI passes`.
