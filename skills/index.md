@@ -3,6 +3,7 @@
 | Skill | Description | External | Source |
 | ----- | ----------- | -------- | ------ |
 | [adr](./adr/SKILL.md) | Draft an Architecture Decision Record. Use when the user says "new ADR", "write an ADR", "record a decision", or "/adr". | | |
+| [agent-usefulness](./agent-usefulness/SKILL.md) | Audits a document for agent signal-to-noise, neighbourhood duplication, and safe cuts. Not source code. Use /agent-usefulness. | | |
 | [architecture](./architecture/SKILL.md) | Change-scoped system architecture: components, contracts, data flows, inward dependencies. | | |
 | [capture-idea](./capture-idea/SKILL.md) | Captures an idea from freeform input or conversation as concise bullet points | | |
 | [code-review](./code-review/SKILL.md) | Reviews code changes against code quality, conventions, principles, security, testing, and spec conformance | | |

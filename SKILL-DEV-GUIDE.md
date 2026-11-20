@@ -15,4 +15,8 @@ So a good skill gives the agent four things, and little else:
 
 ## Format
 
-The skills must adhere to the format specified by [agentskills.io](https://agentskills.io/specification)
+The skills must adhere to the format specified by [agentskills.io](https://agentskills.io/specification).
+
+### Repo extensions
+
+Collection skills set `disable-model-invocation: true` so only explicit `/skill` invocation runs them. [skills/install.sh](./skills/install.sh) enforces this on every installed copy, including fetched externals. The field is outside the public spec today; `npx skills-ref validate` reports an unexpected field until upstream or the validator allowlists it. Keep the field on slash-command skills in this repo.
