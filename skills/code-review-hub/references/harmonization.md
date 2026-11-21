@@ -51,7 +51,7 @@ Write for a human reader in chat or on a PR, not for log parsers.
 
 1. **Summary.** Combine dimension summaries into one to three sentences. Cover behavior, intent, and structure as needed. Do not list issues here.
 2. **Findings.** Group under `### Major`, `### Medium`, and `### Minor` (omit empty buckets). One **finding block** per issue; blank line between blocks.
-3. **Coverage.** One short paragraph when it helps: dimensions with `none`, and missing discovery docs stated once.
+3. **Coverage.** Short paragraph when useful: [surface-scan.md](surface-scan.md) skips (reason per id), subagent **Skipped** `none`, missing discovery docs once.
 4. **Totals.** `Major N · Medium N · Minor N`. Recompute after dedup. Do not sum per-dimension totals.
 
 ### Finding block format

@@ -4,15 +4,15 @@ Launch Task subagents for report-only dimension runs. This file is the only wiri
 
 ## Defaults
 
-Launch one Task subagent per selected dimension. Run all selected dimensions in parallel unless the harness limits concurrency. Set `run_in_background: false` unless the user asks for a background run.
+Launch one Task per **launch** dimension (after surface scan). Parallel unless the harness limits concurrency. `run_in_background: false` unless the user asks for background.
 
 ## Model
 
-Same Task `model` slug on every dimension run. Precedence: user override, then default.
+One `model` slug on every **launch** Task. User override in the hub invocation, else default.
 
-**User override:** Map the user's slug or natural name (Claude, Opus, Sonnet, Composer, GPT, Gemini, Grok; e.g. `claude-sonnet-5-5-high`) to a slug in this turn's Task allowlist. If unmapped or not allowed, list available models and hold Tasks until they pick a valid slug or drop the override.
+**Override:** Same message as the hub (`with sonnet`, `use composer`, or allowlist slug). Map names (Claude, Opus, Sonnet, Composer, GPT, Gemini, Grok) or slugs to this turn's Task allowlist. Unmapped or disallowed → list allowlist and wait. Reviewer Tasks only, not the coordinator.
 
-**Default:** `grok-4.7-high` when listed; else omit `model` or use harness default.
+**Default:** `grok-4.7-high` when listed; else omit `model` or harness default.
 
 Non-default slug: optional `Reviewer model:` line in merged report ([harmonization.md](harmonization.md)).
 
