@@ -1,0 +1,22 @@
+version: 1
+root: {{WORKSPACE}}
+scopes:
+  - id: information-technology
+    parent: null
+    path: loci/information-technology
+    facets:
+      library: { path: library }
+  - id: programming
+    parent: information-technology
+    path: loci/programming
+    facets:
+      library: { path: library }
+      wiki: { path: wikis, slugs: [] }
+  - id: programming/rust
+    parent: programming
+    path: loci/programming/rust
+    facets:
+      library: { path: library }
+      wiki: { path: wikis, slugs: [] }
+      academy: { path: academy }
+      works: { path: works }

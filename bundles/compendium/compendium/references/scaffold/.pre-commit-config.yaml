@@ -1,0 +1,10 @@
+# Install with: prek install
+# Compendium POC: placeholder hook until scope-aware lint hooks land.
+repos:
+  - repo: local
+    hooks:
+      - id: compendium-poc-noop
+        name: compendium placeholder
+        entry: "true"
+        language: system
+        pass_filenames: false

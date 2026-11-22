@@ -155,7 +155,7 @@ if [[ ${#selected_skills[@]} -gt 0 ]]; then
   local_name=""
   for local_name in "${selected_skills[@]}"; do
     if is_bundle_exclusive "$local_name"; then
-      echo "Skill $local_name is bundle-owned; install with --bundle (see bundles/README.md)" >&2
+      echo "Skill $local_name is bundle-owned; install with --bundle (see bundles/AGENTS.md)" >&2
       exit 1
     fi
   done
@@ -434,7 +434,7 @@ if [[ ${#selected_skills[@]} -gt 0 ]]; then
         done < "$LOCK_FILE"
       fi
       if is_bundle_exclusive "$want"; then
-        echo "Skill $want is bundle-owned; install with --bundle (see bundles/README.md)" >&2
+        echo "Skill $want is bundle-owned; install with --bundle (see bundles/AGENTS.md)" >&2
         exit 1
       fi
       echo "Unknown skill: $want (see --list)" >&2
