@@ -4,15 +4,19 @@ Agent skills repo. Portable across Cursor, Codex, Copilot, Gemini, Cline, and ot
 
 ## Authoring
 
-Read [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) first.
+When creating or editing skills in this repo, follow the **[new-skill](./skills/new-skill/SKILL.md)** skill (principles, format, spec).
 
 Skills must conform to the [Agent Skills specification](https://agentskills.io/specification).
 
 External skills (marked in [skills/index.md](./skills/index.md)) live in [skills/external.lock](./skills/external.lock) and are fetched at install time — not vendored here. Do not edit upstream content; pin `ref` in the lock file for reproducible installs.
 
-Standalone skills installed from `skills/` get `disable-model-invocation: true` when missing (slash-command only). [skills/install.sh](./skills/install.sh) enforces that for standalone and external installs; bundle policy is set in each `bundles/*/bundle.yaml`.
+### Repo extensions
 
-**Bundles** (`bundles/`) ship related skills together. Install with `./skills/install.sh --bundle NAME`. Bundle-owned skills are not under `skills/` and cannot be installed with `--skill` alone. See [bundles/README.md](./bundles/README.md).
+This repository adds install layout and frontmatter beyond the public spec:
+
+- Standalone skills in `skills/` get `disable-model-invocation: true` when missing (slash-command only). [skills/install.sh](./skills/install.sh) enforces that for standalone and external installs.
+- **Bundles** live under [bundles/](./bundles/). Install with `./skills/install.sh --bundle NAME`. Bundle-owned skills are not under `skills/` and cannot be installed with `--skill` alone. Bundle slash-command policy is set in each `bundles/*/bundle.yaml` (`patch_disable_model_invocation`).
+- The `disable-model-invocation` field is outside the public spec today; `npx skills-ref validate` reports an unexpected field until upstream or the validator allowlists it.
 
 ## Install
 
@@ -58,4 +62,4 @@ Hook (once per clone): `git config core.hooksPath .githooks`
 | [bundles/](./bundles/) | Skill bundles (install with `--bundle`) |
 | [skills/external.lock](./skills/external.lock) | Upstream pointers for external skills |
 | [skills/install.sh](./skills/install.sh) | Installer |
-| [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) | How to write skills |
+| [skills/new-skill/SKILL.md](./skills/new-skill/SKILL.md) | Authoring skills (standalone skill) |
