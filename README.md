@@ -12,4 +12,4 @@ Works with any harness that reads `.agents/skills/` (Cursor, Codex, Copilot, Gem
 
 Operational details (install flags, authoring, external skills, git hooks): [AGENTS.md](./AGENTS.md)
 
-Skill catalog: [skills/index.md](./skills/index.md)
+Skill catalog: [skills/index.md](./skills/index.md) · Bundles: [bundles/README.md](./bundles/README.md)

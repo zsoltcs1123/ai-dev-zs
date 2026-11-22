@@ -1,5 +1,7 @@
 # Skills Index
 
+Standalone skills only. Bundle-owned skills (e.g. Compendium `compendium`, future facets) live under [bundles/](../bundles/) and install with `./skills/install.sh --bundle compendium`. `summarize` and `quick-summarize` are shared: they appear here and ship inside that bundle.
+
 | Skill | Description | External | Source |
 | ----- | ----------- | -------- | ------ |
 | [adr](./adr/SKILL.md) | Draft an Architecture Decision Record. Use when the user says "new ADR", "write an ADR", "record a decision", or "/adr". | | |

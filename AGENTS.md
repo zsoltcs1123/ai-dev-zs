@@ -10,7 +10,9 @@ Skills must conform to the [Agent Skills specification](https://agentskills.io/s
 
 External skills (marked in [skills/index.md](./skills/index.md)) live in [skills/external.lock](./skills/external.lock) and are fetched at install time — not vendored here. Do not edit upstream content; pin `ref` in the lock file for reproducible installs.
 
-All collection skills use `disable-model-invocation: true` (slash-command only). [skills/install.sh](./skills/install.sh) enforces this on every installed copy, including fetched externals.
+Standalone skills installed from `skills/` get `disable-model-invocation: true` when missing (slash-command only). [skills/install.sh](./skills/install.sh) enforces that for standalone and external installs; bundle policy is set in each `bundles/*/bundle.yaml`.
+
+**Bundles** (`bundles/`) ship related skills together. Install with `./skills/install.sh --bundle NAME`. Bundle-owned skills are not under `skills/` and cannot be installed with `--skill` alone. See [bundles/README.md](./bundles/README.md).
 
 ## Install
 
@@ -24,6 +26,7 @@ Do not commit `.agents/skills/` — local install target (gitignored). Re-run in
 ./skills/install.sh --global           # user → ~/.agents/skills/
 ./skills/install.sh --skip-external    # local skills only (skip upstream fetches)
 ./skills/install.sh --skill NAME       # one skill only (repeat --skill for several)
+./skills/install.sh --bundle NAME      # install a bundle (e.g. compendium)
 ./skills/install.sh --list             # list installable skills
 ```
 
@@ -51,7 +54,8 @@ Hook (once per clone): `git config core.hooksPath .githooks`
 
 | File | Purpose |
 | ---- | ------- |
-| [skills/index.md](./skills/index.md) | Skill catalog |
+| [skills/index.md](./skills/index.md) | Standalone skill catalog |
+| [bundles/](./bundles/) | Skill bundles (install with `--bundle`) |
 | [skills/external.lock](./skills/external.lock) | Upstream pointers for external skills |
 | [skills/install.sh](./skills/install.sh) | Installer |
 | [SKILL-DEV-GUIDE.md](./SKILL-DEV-GUIDE.md) | How to write skills |

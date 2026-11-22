@@ -19,4 +19,4 @@ The skills must adhere to the format specified by [agentskills.io](https://agent
 
 ### Repo extensions
 
-Collection skills set `disable-model-invocation: true` so only explicit `/skill` invocation runs them. [skills/install.sh](./skills/install.sh) enforces this on every installed copy, including fetched externals. The field is outside the public spec today; `npx skills-ref validate` reports an unexpected field until upstream or the validator allowlists it. Keep the field on slash-command skills in this repo.
+Standalone skills in `skills/` set `disable-model-invocation: true` so only explicit `/skill` invocation runs them. [skills/install.sh](./skills/install.sh) inserts it on standalone and external installs when missing. Bundle-owned skills live under `bundles/<id>/`; install only via `--bundle`. Their slash-command policy comes from `bundle.yaml` (`patch_disable_model_invocation`). The field is outside the public spec today; `npx skills-ref validate` reports an unexpected field until upstream or the validator allowlists it.

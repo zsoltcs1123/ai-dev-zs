@@ -1,0 +1,7 @@
+id: compendium
+description: Compendium workspace and facet skills for a host git repository
+allow_global: false
+patch_disable_model_invocation: false
+include:
+  - summarize
+  - quick-summarize

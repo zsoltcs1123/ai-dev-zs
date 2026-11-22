@@ -4,9 +4,10 @@
 # Once installed there, harnesses that read .agents/skills/ natively (Cursor 2.4+,
 # Codex, Copilot, Gemini, Cline, ...) pick them up with no further setup.
 #
-# Local skills are copied from this repo. External skills (see external.lock) are
-# fetched from upstream at install time. All installed skills get
-# disable-model-invocation: true so only explicit /skill invocation runs them.
+# Local skills are copied from skills/. Bundles live in ../bundles/; use --bundle.
+# External skills (see external.lock) are fetched from upstream at install time.
+# Standalone installs get disable-model-invocation: true unless already set.
+# Bundle-owned skills follow patch_disable_model_invocation in bundle.yaml.
 # Installs also register sources in the npx skills lock file (~/.agents/.skill-lock.json
 # for --global, skills-lock.json for project installs) so `npx skills list` shows
 # the correct upstream repo instead of "local".
@@ -21,31 +22,53 @@
 #   ./install.sh --list          List installable skills and exit
 #   ./install.sh --skip-external Install local skills only (skip upstream fetches)
 #   ./install.sh --skill NAME    Install only NAME (--skill may be repeated)
+#   ./install.sh --bundle ID     Install bundle ID (e.g. compendium)
 #
 # Re-run to refresh installed copies and pull latest external skills.
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+BUNDLES_DIR="$REPO_ROOT/bundles"
 LOCK_FILE="$SCRIPT_DIR/external.lock"
 LOCAL_REPO="${SKILLS_LOCAL_REPO:-zsoltcs1123/ai-dev-zs}"
 LOCAL_REPO_URL="https://github.com/${LOCAL_REPO}.git"
+BUNDLE_HELPER="$SCRIPT_DIR/install-bundle.py"
 
 target=""
 global=false
 skip_external=false
 project_root=""
 selected_skills=()
+bundle_id=""
 
 skill_selected() {
   local name="$1"
-  if [[ ${#selected_skills[@]} -eq 0 ]]; then
-    return 0
+  if [[ ${#selected_skills[@]} -gt 0 ]]; then
+    local s
+    for s in "${selected_skills[@]}"; do
+      [[ "$s" == "$name" ]] && return 0
+    done
+    return 1
   fi
-  local s
-  for s in "${selected_skills[@]}"; do
-    [[ "$s" == "$name" ]] && return 0
-  done
+  if [[ -n "$bundle_id" ]]; then
+    return 1
+  fi
+  return 0
+}
+
+bundle_exclusive_names() {
+  python3 "$BUNDLE_HELPER" exclusive "$BUNDLES_DIR"
+}
+
+is_bundle_exclusive() {
+  local name="$1"
+  local n
+  while IFS= read -r n; do
+    [[ -z "$n" ]] && continue
+    [[ "$n" == "$name" ]] && return 0
+  done < <(bundle_exclusive_names)
   return 1
 }
 
@@ -60,28 +83,56 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --list)
-      echo "Installable skills:"
-      while IFS= read -r line || [[ -n "$line" ]]; do
-        [[ "$line" =~ ^[[:space:]]*# ]] && continue
-        [[ -z "${line//[[:space:]]/}" ]] && continue
-        read -r name _ _ _ <<< "$line"
-        echo "  - $name (external)"
-      done < "$LOCK_FILE"
+      echo "Standalone skills (skills/):"
       for d in "$SCRIPT_DIR"/*/; do
         [ -f "${d}SKILL.md" ] || continue
         echo "  - $(basename "$d")"
       done
+      if [[ -f "$LOCK_FILE" ]]; then
+        echo ""
+        echo "External skills:"
+        while IFS= read -r line || [[ -n "$line" ]]; do
+          [[ "$line" =~ ^[[:space:]]*# ]] && continue
+          [[ -z "${line//[[:space:]]/}" ]] && continue
+          read -r name _ _ _ <<< "$line"
+          echo "  - $name"
+        done < "$LOCK_FILE"
+      fi
+      if [[ -d "$BUNDLES_DIR" ]]; then
+        echo ""
+        python3 "$BUNDLE_HELPER" list "$BUNDLES_DIR"
+      fi
       exit 0
+      ;;
+    --bundle)
+      if [[ $# -lt 2 ]]; then
+        echo "Missing bundle id after --bundle" >&2
+        exit 1
+      fi
+      bundle_id="$2"
+      shift 2
+      ;;
+    --bundle=*)
+      bundle_id="${1#--bundle=}"
+      shift
       ;;
     --skill)
       if [[ $# -lt 2 ]]; then
         echo "Missing skill name after --skill" >&2
         exit 1
       fi
+      if [[ -n "$bundle_id" ]]; then
+        echo "Use either --bundle or --skill, not both" >&2
+        exit 1
+      fi
       selected_skills+=("$2")
       shift 2
       ;;
     --skill=*)
+      if [[ -n "$bundle_id" ]]; then
+        echo "Use either --bundle or --skill, not both" >&2
+        exit 1
+      fi
       selected_skills+=("${1#--skill=}")
       shift
       ;;
@@ -99,6 +150,16 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+if [[ ${#selected_skills[@]} -gt 0 ]]; then
+  local_name=""
+  for local_name in "${selected_skills[@]}"; do
+    if is_bundle_exclusive "$local_name"; then
+      echo "Skill $local_name is bundle-owned; install with --bundle (see bundles/README.md)" >&2
+      exit 1
+    fi
+  done
+fi
 
 if $global; then
   dest="$HOME/.agents/skills"
@@ -222,7 +283,20 @@ ensure_manual_invoke_only() {
 }
 
 patch_installed_skill() {
-  ensure_manual_invoke_only "$dest/$1/SKILL.md"
+  local name="$1"
+  local apply_patch="${2:-true}"
+  if [[ "$apply_patch" == "true" ]]; then
+    ensure_manual_invoke_only "$dest/$name/SKILL.md"
+  fi
+}
+
+install_local_skill_copy() {
+  local src="$1" name="$2" lock_path="$3" apply_patch="${4:-true}"
+  rm -rf "$dest/$name"
+  cp -R "$src" "$dest/$name"
+  patch_installed_skill "$name" "$apply_patch"
+  register_skill_lock "$name" "$LOCAL_REPO" "github" "$LOCAL_REPO_URL" "main" "$lock_path"
+  echo "  copy: $name -> $dest/$name"
 }
 
 fetch_external_skill() {
@@ -254,6 +328,55 @@ fetch_external_skill() {
 
 installed=0
 installed_skill_names=()
+
+install_bundle() {
+  local id="$1"
+  local bundle_dir="$BUNDLES_DIR/$id"
+  if [[ ! -f "$bundle_dir/bundle.yaml" ]]; then
+    echo "Unknown bundle: $id (see --list)" >&2
+    exit 1
+  fi
+
+  local allow_global patch_disable
+  read -r allow_global patch_disable < <(
+    python3 "$BUNDLE_HELPER" config "$bundle_dir"
+  )
+
+  if $global && [[ "$allow_global" != "true" ]]; then
+    echo "Bundle $id cannot be installed with --global" >&2
+    exit 1
+  fi
+
+  local patch_bundle_owned="false"
+  if [[ "$patch_disable" == "true" ]]; then
+    patch_bundle_owned="true"
+  fi
+
+  local name src kind
+  while IFS=$'\t' read -r name src kind; do
+    [[ -z "$name" ]] && continue
+    case "$kind" in
+      bundle)
+        install_local_skill_copy "$src" "$name" "bundles/$id/$name/SKILL.md" "$patch_bundle_owned"
+        ;;
+      shared)
+        install_local_skill_copy "$src" "$name" "skills/$name/SKILL.md" "true"
+        ;;
+      *)
+        echo "Invalid bundle member $name ($kind)" >&2
+        exit 1
+        ;;
+    esac
+    installed_skill_names+=("$name")
+    installed=$((installed + 1))
+  done < <(python3 "$BUNDLE_HELPER" members "$bundle_dir" "$SCRIPT_DIR")
+}
+
+if [[ -n "$bundle_id" ]]; then
+  install_bundle "$bundle_id"
+  echo "Installed $installed skill(s) from bundle $bundle_id into $dest"
+  exit 0
+fi
 
 if ! $skip_external; then
   while IFS= read -r line || [[ -n "$line" ]]; do
@@ -287,11 +410,7 @@ for d in "$SCRIPT_DIR"/*/; do
   [ -f "${d}SKILL.md" ] || continue
   name="$(basename "$d")"
   skill_selected "$name" || continue
-  rm -rf "$dest/$name"
-  cp -R "$d" "$dest/$name"
-  patch_installed_skill "$name"
-  register_skill_lock "$name" "$LOCAL_REPO" "github" "$LOCAL_REPO_URL" "main" "skills/${name}/SKILL.md"
-  echo "  copy: $name -> $dest/$name"
+  install_local_skill_copy "$d" "$name" "skills/${name}/SKILL.md" "true"
   installed_skill_names+=("$name")
   installed=$((installed + 1))
 done
@@ -313,6 +432,10 @@ if [[ ${#selected_skills[@]} -gt 0 ]]; then
             exit 1
           fi
         done < "$LOCK_FILE"
+      fi
+      if is_bundle_exclusive "$want"; then
+        echo "Skill $want is bundle-owned; install with --bundle (see bundles/README.md)" >&2
+        exit 1
       fi
       echo "Unknown skill: $want (see --list)" >&2
       exit 1
