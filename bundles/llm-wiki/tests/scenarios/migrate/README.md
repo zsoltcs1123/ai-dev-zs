@@ -3,5 +3,5 @@
 Scaffold versioning, additive sync, playbook chain, hub-only index mechanics.
 
 ```bash
-make test-migrate
+make wiki-test-migrate
 ```

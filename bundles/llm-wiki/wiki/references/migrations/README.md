@@ -22,7 +22,7 @@ A full migrate normally ends at the installed wiki skill `metadata.version`. `--
 2. Update `wiki/references/scaffold/`. Set template `scaffold:` to the new version.
 3. Add `X.Y-to-X.Z.md` with preconditions, tier A notes, steps, verification, and log wording.
 4. If the bash mirror needs the new step, extend `WIKI_SCAFFOLD_STEPS` in `tests/lib/wiki-migrate.sh`.
-5. Run `make test`.
+5. Run `make wiki-test`.
 6. Add a consumer note in [WIKI-CHANGELOG.md](../../../../WIKI-CHANGELOG.md).
 
 ## Playbook sections

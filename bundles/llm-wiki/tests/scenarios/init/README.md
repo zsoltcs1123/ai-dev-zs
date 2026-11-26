@@ -3,5 +3,5 @@
 Resolve-wiki and `/wiki init` scaffold behavior.
 
 ```bash
-make test-init
+make wiki-test-init
 ```

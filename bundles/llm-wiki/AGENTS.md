@@ -37,7 +37,7 @@ Bump `metadata.version` in [wiki/SKILL.md](wiki/SKILL.md) when operate semantics
 ## Tests
 
 ```bash
-make -C bundles/llm-wiki test
+make -C bundles/llm-wiki wiki-test
 ```
 
 See [tests/README.md](tests/README.md).

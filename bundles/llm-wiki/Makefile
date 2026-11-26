@@ -1,19 +1,19 @@
-.DEFAULT_GOAL := help
+.DEFAULT_GOAL := wiki-help
 
-.PHONY: help test test-init test-migrate tests check
+.PHONY: wiki-help wiki-test wiki-test-init wiki-test-migrate wiki-tests wiki-check
 
-help:
+wiki-help:
 	@echo "Wiki operate tests:"
-	@echo "  make test         — all scenarios"
-	@echo "  make test-init    — resolve-wiki + init"
-	@echo "  make test-migrate — migrate mechanics"
+	@echo "  make wiki-test         — all scenarios"
+	@echo "  make wiki-test-init    — resolve-wiki + init"
+	@echo "  make wiki-test-migrate — migrate mechanics"
 
-test: tests
-tests check:
+wiki-test: wiki-tests
+wiki-tests wiki-check:
 	./tests/run.sh
 
-test-init:
+wiki-test-init:
 	./tests/scenarios/init/run.sh
 
-test-migrate:
+wiki-test-migrate:
 	./tests/scenarios/migrate/run.sh

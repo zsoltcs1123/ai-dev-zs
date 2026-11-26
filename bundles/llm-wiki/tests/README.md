@@ -3,7 +3,7 @@
 Run all scenarios:
 
 ```bash
-make test
+make wiki-test
 ./tests/run.sh
 ```
 
