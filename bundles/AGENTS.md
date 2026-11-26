@@ -2,13 +2,11 @@
 
 Skills that ship and install together. Standalone skills live in [`skills/`](../skills/).
 
-Each bundle is a subdirectory with `bundle.yaml` and one or more skill folders (`<name>/SKILL.md`). Install with:
+| Bundle | Install |
+| ------ | ------- |
+| [llm-wiki](./llm-wiki/) | `./skills/install.sh [TARGET] --bundle llm-wiki` |
 
-```bash
-./skills/install.sh [TARGET] --bundle ID
-```
-
-Run `./skills/install.sh --list` to see bundle IDs once they are added.
+Each bundle is a subdirectory with `bundle.yaml` and one or more skill folders (`<name>/SKILL.md`). Run `./skills/install.sh --list` for bundle IDs and members.
 
 Bundle-only skills: `--bundle` only (not `--skill` alone). Repo rules: [AGENTS.md](../AGENTS.md) § Repo extensions.
 

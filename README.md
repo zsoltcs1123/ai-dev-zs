@@ -8,6 +8,7 @@ Works with any harness that reads `.agents/skills/` (Cursor, Codex, Copilot, Gem
 
 ```bash
 ./skills/install.sh --global
+./skills/install.sh --global --bundle llm-wiki   # optional: wiki operate layer
 ```
 
 Operational details (install flags, authoring, external skills, git hooks): [AGENTS.md](./AGENTS.md)

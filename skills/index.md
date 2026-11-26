@@ -1,6 +1,6 @@
 # Skills Index
 
-Standalone skills only. Bundle-owned skills live under [bundles/](../bundles/) and install with `./skills/install.sh --bundle NAME` (see [bundles/AGENTS.md](../bundles/AGENTS.md)).
+Standalone skills only. Bundle-owned skills (e.g. `wiki` in [llm-wiki](../bundles/llm-wiki/)) install with `./skills/install.sh --bundle llm-wiki`. The same bundle also pulls in shared `summarize`, `quick-summarize`, and `citations` from this catalog.
 
 | Skill | Description | External | Source |
 | ----- | ----------- | -------- | ------ |
@@ -8,6 +8,7 @@ Standalone skills only. Bundle-owned skills live under [bundles/](../bundles/) a
 | [agent-usefulness](./agent-usefulness/SKILL.md) | Audits prose (file or folder) for signal-to-noise, duplication, safe cuts. Folder: one pass per file. /agent-usefulness. | | |
 | [architecture](./architecture/SKILL.md) | Change-scoped system architecture: components, contracts, data flows, inward dependencies. | | |
 | [capture-idea](./capture-idea/SKILL.md) | Captures an idea from freeform input or conversation as concise bullet points | | |
+| [citations](./citations/SKILL.md) | Pull concrete cited sources from input text (papers, URLs, DOIs, standards) | | |
 | [code-review](./code-review/SKILL.md) | Reviews code changes against code quality, conventions, principles, security, testing, and spec conformance | | |
 | [code-review-hub](./code-review-hub/SKILL.md) | Multi-dimension code review in one slash command. Maps intent to dimensions, resolves the target without guessing, runs one subagent per dimension, merges one report. Dimensions: implementation, intent, conformance, security, testing, simplicity, structure. | | |
 | [fix-code](./fix-code/SKILL.md) | Fix an explicit issue list from chat or a file; verify each item, interactive or batch | | |
