@@ -1,5 +1,7 @@
 # Skills Index
 
+Standalone skills only. Bundle-owned skills live under [bundles/](../bundles/) and install with `./skills/install.sh --bundle NAME` (see [bundles/AGENTS.md](../bundles/AGENTS.md)).
+
 | Skill | Description | External | Source |
 | ----- | ----------- | -------- | ------ |
 | [adr](./adr/SKILL.md) | Draft an Architecture Decision Record. Use when the user says "new ADR", "write an ADR", "record a decision", or "/adr". | | |

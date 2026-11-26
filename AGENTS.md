@@ -10,7 +10,13 @@ Skills must conform to the [Agent Skills specification](https://agentskills.io/s
 
 External skills (marked in [skills/index.md](./skills/index.md)) live in [skills/external.lock](./skills/external.lock) and are fetched at install time — not vendored here. Do not edit upstream content; pin `ref` in the lock file for reproducible installs.
 
-All collection skills use `disable-model-invocation: true` (slash-command only). [skills/install.sh](./skills/install.sh) enforces this on every installed copy, including fetched externals.
+### Repo extensions
+
+This repository adds install layout and frontmatter beyond the public spec:
+
+- Standalone skills in `skills/` get `disable-model-invocation: true` when missing (slash-command only). [skills/install.sh](./skills/install.sh) enforces that for standalone and external installs.
+- **Bundles** live under [bundles/](./bundles/). Install with `./skills/install.sh --bundle NAME`. Bundle-owned skills are not under `skills/` and cannot be installed with `--skill` alone. Bundle slash-command policy is set in each `bundles/*/bundle.yaml` (`patch_disable_model_invocation`).
+- The `disable-model-invocation` field is outside the public spec today; `npx skills-ref validate` reports an unexpected field until upstream or the validator allowlists it.
 
 ## Install
 
@@ -24,6 +30,7 @@ Do not commit `.agents/skills/` — local install target (gitignored). Re-run in
 ./skills/install.sh --global           # user → ~/.agents/skills/
 ./skills/install.sh --skip-external    # local skills only (skip upstream fetches)
 ./skills/install.sh --skill NAME       # one skill only (repeat --skill for several)
+./skills/install.sh --bundle NAME      # install a bundle
 ./skills/install.sh --list             # list installable skills
 ```
 
@@ -51,7 +58,8 @@ Hook (once per clone): `git config core.hooksPath .githooks`
 
 | File | Purpose |
 | ---- | ------- |
-| [skills/index.md](./skills/index.md) | Skill catalog |
+| [skills/index.md](./skills/index.md) | Standalone skill catalog |
+| [bundles/](./bundles/) | Skill bundles (install with `--bundle`) |
 | [skills/external.lock](./skills/external.lock) | Upstream pointers for external skills |
 | [skills/install.sh](./skills/install.sh) | Installer |
 | [skills/new-skill/references/skill-dev-guide.md](./skills/new-skill/references/skill-dev-guide.md) | How to write skills (`new-skill`) |
