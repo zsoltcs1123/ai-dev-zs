@@ -1,31 +1,69 @@
 # AGENTS.md
 
-## Overview
+Agent skills repo. Portable across Cursor, Codex, Copilot, Gemini, Cline, and other harnesses that read `.agents/skills/`.
 
-Repository for creating AI development artifacts: skills, subagents, rules, and orchestration patterns. Portable across Cursor, Claude Code, Codex, Gemini, and other markdown-reading agents.
+## Authoring
 
-## Primary Task
+Read [skills/new-skill/references/skill-dev-guide.md](./skills/new-skill/references/skill-dev-guide.md) first (or use `/new-skill`).
 
-Support creation of:
+Skills must conform to the [Agent Skills specification](https://agentskills.io/specification).
 
-- **Skills** — Reusable workflows in `SKILL.md` format
-- **Subagents** — Thin wrappers that delegate to skills
-- **Rules** — Coding conventions and standards
-- **Orchestration patterns** — Multi-agent workflows
+External skills (marked in [skills/index.md](./skills/index.md)) live in [skills/external.lock](./skills/external.lock) and are fetched at install time — not vendored here. Do not edit upstream content; pin `ref` in the lock file for reproducible installs.
 
-## Resources
+### Repo extensions
 
-- [agentskills.io](https://agentskills.io/) — Official Agent Skills specification
-- `create-skill` skill — Use for skill authoring guidance
+This repository adds install layout and frontmatter beyond the public spec:
 
-## Constraints
+- Standalone skills in `skills/` get `disable-model-invocation: true` when missing (slash-command only). [skills/install.sh](./skills/install.sh) enforces that for standalone and external installs.
+- **Bundles** live under [bundles/](./bundles/). Install with `./skills/install.sh --bundle NAME`. Bundle-owned skills are not under `skills/` and cannot be installed with `--skill` alone. Bundle slash-command policy is set in each `bundles/*/bundle.yaml` (`patch_disable_model_invocation`).
+- The `disable-model-invocation` field is outside the public spec today; `npx skills-ref validate` reports an unexpected field until upstream or the validator allowlists it.
 
-- Skills must follow [agentskills.io specification](https://agentskills.io/specification)
-- SKILL.md files: max 500 lines, description max 1024 chars
-- Descriptions: third-person, include WHAT and WHEN
-- Use progressive disclosure (reference files for detailed content)
+## Install
 
-## Key Files
+Do not commit `.agents/skills/` — local install target (gitignored). Re-run install to refresh.
 
-- `skills/INDEX.md` — Skill catalog
-- `workspace/` — Temporary files, load on demand only
+### Full curated set (local + external)
+
+```bash
+./skills/install.sh                    # current project → ./.agents/skills/
+./skills/install.sh /path/to/app       # specific project
+./skills/install.sh --global           # user → ~/.agents/skills/
+./skills/install.sh --skip-external    # local skills only (skip upstream fetches)
+./skills/install.sh --skill NAME       # one skill only (repeat --skill for several)
+./skills/install.sh --bundle NAME      # install a bundle
+./skills/install.sh --list             # list installable skills
+```
+
+Registers sources in the npx skills lock file (`~/.agents/.skill-lock.json` for `--global`, `skills-lock.json` for project installs) so `npx skills list` shows upstream repos.
+
+### Local skills only (Node)
+
+Uses [npx skills](https://github.com/vercel-labs/skills). Installs repo skills only — no externals, no install-time `disable-model-invocation` patch.
+
+```bash
+npx skills add zsoltcs1123/ai-dev-zs -a cursor -y                         # all local skills, project
+npx skills add zsoltcs1123/ai-dev-zs --skill code-review -a cursor -y   # one skill
+npx skills add zsoltcs1123/ai-dev-zs -g -a cursor -y                    # global
+npx skills add zsoltcs1123/ai-dev-zs --list
+npx skills update -y
+```
+
+## Markdown lint
+
+On demand (Node ≥20): `make help` — `make install`, `make lint-md`, `make lint-md-fix` (or `npm run lint:md`). Rules in [`.markdownlint.jsonc`](./.markdownlint.jsonc); scope in [`.markdownlint-cli2.jsonc`](./.markdownlint-cli2.jsonc). Lint one file: `make lint-md FILE=skills/foo/SKILL.md`.
+
+## Git
+
+Commits: `type: description` — `feat`, `fix`, `docs`, `chore`.
+
+Hook (once per clone): `git config core.hooksPath .githooks`
+
+## Key files
+
+| File | Purpose |
+| ---- | ------- |
+| [skills/index.md](./skills/index.md) | Standalone skill catalog |
+| [bundles/](./bundles/) | Skill bundles (install with `--bundle`) |
+| [skills/external.lock](./skills/external.lock) | Upstream pointers for external skills |
+| [skills/install.sh](./skills/install.sh) | Installer |
+| [skills/new-skill/references/skill-dev-guide.md](./skills/new-skill/references/skill-dev-guide.md) | How to write skills (`new-skill`) |

@@ -1,0 +1,8 @@
+id: llm-wiki
+description: Operate an LLM-maintained markdown wiki (init, migrate, ingest, query, lint, discard)
+allow_global: true
+patch_disable_model_invocation: false
+include:
+  - summarize
+  - quick-summarize
+  - citations
