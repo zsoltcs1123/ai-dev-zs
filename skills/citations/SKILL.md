@@ -56,7 +56,7 @@ Do not summarize the source unless the user asks.
 
 ## Wiki ingest
 
-On `/wiki ingest`, append bullets under final `## Citations` per **Output format**. If none qualify, section body is exactly `No citations found.` Nothing may follow. See host wiki `references/source-page.md`.
+On `/wiki ingest`, append bullets under final `## Citations` per **Output format**. Do not list the ingested source page or its external origin URL—the article is the subject, not a citation. If none qualify, section body is exactly `No citations found.` Nothing may follow. See host wiki `references/source-page.md`.
 
 ## Guardrails
 

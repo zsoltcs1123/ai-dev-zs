@@ -5,7 +5,7 @@ When new material is added to `raw/`, branch on input path. Read [model.md](../m
 ## `raw/sources/` or `raw/notes/`
 
 1. Read the new file(s).
-2. Create or update one page at `wiki/sources/{author}/{slug}.md` ([model.md](../model.md) author rule; [source-page.md](../source-page.md) layout). Same raw input: `#` title, `Source:` / `Author:` once, `## Quick summary`, `## Summary`, `## Citations` (replace on re-ingest). No `quick/` files.
+2. Create or update one page at `wiki/sources/{author}/{slug}.md` ([model.md](../model.md) author rule; [source-page.md](../source-page.md) layout). Same raw input: `#` title, `Source:` / `Author:` once, `## Quick summary`, `## Summary`, `## Citations` (replace on re-ingest). `Source:` points at the ingest path under `raw/`, not the upstream URL. Citations list in-body references only, not the article under ingest. No `quick/` files.
 3. Identify contradictions, stale claims, overlap, or structural issues the new source exposes in existing `wiki/sources/`, `wiki/concepts/`, and `wiki/entities/`.
 4. Update affected maintained pages to reflect disagreement, uncertainty, supersession, duplication, or unresolved tension when the new source changes the current understanding.
 5. Update `wiki/syntheses/` only if the user explicitly asks for synthesis work and the new source materially changes an existing synthesis.
