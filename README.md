@@ -27,6 +27,7 @@ See [skills/index.md](./skills/index.md).
 | project-architecture | Produce an ARCHITECTURE.md through guided conversation |
 | summarize | Structured summary of articles and long text |
 | quick-summarize | Brief TL;DR without full structure |
+| new-skill | Create a portable Agent Skill from a user description |
 | review-skill | Audit a SKILL.md for spec and quality |
 | code-review | Review a diff against quality, conventions, principles, security, and testing |
 
