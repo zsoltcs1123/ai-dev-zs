@@ -1,0 +1,15 @@
+{
+  "name": "ai-dev-zs",
+  "private": true,
+  "description": "Agent skills repo — on-demand markdownlint-cli2 via Makefile.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "lint:md": "markdownlint-cli2",
+    "lint:md:fix": "markdownlint-cli2 --fix"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.18.1"
+  }
+}

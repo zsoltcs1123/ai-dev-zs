@@ -48,6 +48,10 @@ npx skills add zsoltcs1123/ai-dev-zs --list
 npx skills update -y
 ```
 
+## Markdown lint
+
+On demand (Node ≥20): `make help` — `make install`, `make lint-md`, `make lint-md-fix` (or `npm run lint:md`). Rules in [`.markdownlint.jsonc`](./.markdownlint.jsonc); scope in [`.markdownlint-cli2.jsonc`](./.markdownlint-cli2.jsonc). Lint one file: `make lint-md FILE=skills/foo/SKILL.md`.
+
 ## Git
 
 Commits: `type: description` — `feat`, `fix`, `docs`, `chore`.

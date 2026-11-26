@@ -17,4 +17,4 @@ Core claims about widgets.
 
 ## Citations
 
-- **Title or name:** Widgets 101 — https://example.com
+- **Title or name:** Widgets 101 — <https://example.com>

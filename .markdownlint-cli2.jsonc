@@ -1,0 +1,6 @@
+{
+  "globs": ["**/*.{md,markdown}"],
+  "ignores": ["node_modules/**", "**/.agents/**"],
+  "frontMatter": "(^---\\s*\\r?\\n[\\s\\S]*?\\r?\\n---\\s*(\\r?\\n|$))",
+  "config": "./.markdownlint.jsonc"
+}
