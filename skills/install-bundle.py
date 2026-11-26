@@ -89,14 +89,14 @@ def cmd_members(bundle_dir: Path, skills_dir: Path) -> None:
 
     for skill_dir in bundle_skill_dirs(bundle_dir):
         name = skill_dir.name
-        print(f"{name}\t{skill_dir}\tbundle")
+        print(f"{name}\t{skill_dir.as_posix()}\tbundle")
 
     for ref_name in cfg["include"]:
         src = skills_dir / ref_name
         if not (src / "SKILL.md").is_file():
             print(f"Bundle {bundle_id}: missing shared skill skills/{ref_name}", file=sys.stderr)
             sys.exit(1)
-        print(f"{ref_name}\t{src}\tshared")
+        print(f"{ref_name}\t{src.as_posix()}\tshared")
 
 
 def cmd_list(bundles_root: Path) -> None:
@@ -120,6 +120,11 @@ def cmd_list(bundles_root: Path) -> None:
 
 
 def main() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(newline="\n")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(newline="\n")
+
     if len(sys.argv) < 3:
         print("usage: install-bundle.py <command> <path> [skills_dir]", file=sys.stderr)
         sys.exit(2)
