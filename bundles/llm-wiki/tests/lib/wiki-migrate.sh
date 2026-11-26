@@ -274,13 +274,66 @@ wiki_markdown_split_citations() {
   ' "$body_file"
 }
 
+wiki_markdown_partition_source_header() {
+  local body_file="$1"
+  local title_out="$2"
+  local source_out="$3"
+  local author_out="$4"
+  local summary_out="$5"
+  : >"$title_out"
+  : >"$source_out"
+  : >"$author_out"
+  : >"$summary_out"
+  awk -v title="$title_out" -v source="$source_out" -v author="$author_out" -v summary="$summary_out" '
+    BEGIN { got_title = 0; got_source = 0; got_author = 0 }
+    /^# / && got_title == 0 {
+      print >> title
+      got_title = 1
+      next
+    }
+    /^Source:/ && got_source == 0 {
+      print >> source
+      got_source = 1
+      next
+    }
+    /^Author:/ && got_author == 0 {
+      print >> author
+      got_author = 1
+      next
+    }
+    { print >> summary }
+  ' "$body_file"
+}
+
+wiki_markdown_strip_source_header() {
+  local body_file="$1"
+  awk '
+    BEGIN { got_title = 0; got_source = 0; got_author = 0; started = 0 }
+    /^# / && got_title == 0 { got_title = 1; next }
+    /^Source:/ && got_source == 0 { got_source = 1; next }
+    /^Author:/ && got_author == 0 { got_author = 1; next }
+    {
+      if (started == 0 && $0 ~ /^[[:space:]]*$/) next
+      started = 1
+      print
+    }
+  ' "$body_file"
+}
+
+wiki_markdown_summary_has_inbody_citations() {
+  local summary_file="$1"
+  grep -Eq '^(## Citations|### Cited Research|### .*[Ee]vidence)' "$summary_file" 2>/dev/null
+}
+
 wiki_migrate_merge_quick_sources() {
   local wiki_root="${1%/}"
   local sources_root="$wiki_root/wiki/sources"
 
   [[ -d "$sources_root" ]] || return 0
 
-  local quickfile author_dir slug main_file tmp_quick tmp_main tmp_main_body tmp_citations tmp_out
+  local quickfile author_dir slug main_file
+  local tmp_quick tmp_main tmp_main_body tmp_citations tmp_out
+  local tmp_title tmp_source tmp_author tmp_summary tmp_quick_clean
   mapfile -d '' -t quick_files < <(find "$sources_root" -path '*/quick/*.md' -type f -print0 2>/dev/null || true)
   [[ ${#quick_files[@]} -gt 0 ]] || return 0
 
@@ -294,14 +347,24 @@ wiki_migrate_merge_quick_sources() {
     tmp_main_body="$(mktemp)"
     tmp_citations="$(mktemp)"
     tmp_out="$(mktemp)"
+    tmp_title="$(mktemp)"
+    tmp_source="$(mktemp)"
+    tmp_author="$(mktemp)"
+    tmp_summary="$(mktemp)"
+    tmp_quick_clean="$(mktemp)"
 
     wiki_markdown_body_only "$quickfile" >"$tmp_quick"
+    wiki_markdown_strip_source_header "$tmp_quick" >"$tmp_quick_clean"
 
     if [[ -f "$main_file" ]]; then
       wiki_markdown_body_only "$main_file" >"$tmp_main"
       wiki_markdown_split_citations "$tmp_main" "$tmp_main_body" "$tmp_citations"
+      wiki_markdown_partition_source_header "$tmp_main_body" "$tmp_title" "$tmp_source" "$tmp_author" "$tmp_summary"
+
       if [[ ! -s "$tmp_citations" ]]; then
-        printf '%s\n' '## Citations' '' 'No citations found.' >"$tmp_citations"
+        if ! wiki_markdown_summary_has_inbody_citations "$tmp_summary"; then
+          printf '%s\n' '## Citations' '' 'No citations found.' >"$tmp_citations"
+        fi
       fi
 
       {
@@ -311,19 +374,34 @@ wiki_migrate_merge_quick_sources() {
           printf '%s\n' '---' 'type: source' 'status: draft' '---'
         fi
         echo
+        if [[ -s "$tmp_title" ]]; then cat "$tmp_title"; fi
+        if [[ -s "$tmp_source" ]]; then cat "$tmp_source"; fi
+        if [[ -s "$tmp_author" ]]; then cat "$tmp_author"; fi
+        echo
         echo '## Quick summary'
         echo
-        cat "$tmp_quick"
-        echo
-        if [[ -s "$tmp_main_body" ]]; then
-          echo '---'
+        cat "$tmp_quick_clean"
+        if [[ -s "$tmp_summary" ]]; then
           echo
-          cat "$tmp_main_body"
+          echo '## Summary'
+          echo
+          cat "$tmp_summary"
         fi
-        cat "$tmp_citations"
+        if [[ -s "$tmp_citations" ]]; then
+          echo
+          cat "$tmp_citations"
+        fi
       } >"$tmp_out"
       mv "$tmp_out" "$main_file"
     else
+      wiki_markdown_partition_source_header "$tmp_quick" "$tmp_title" "$tmp_source" "$tmp_author" "$tmp_summary"
+
+      if ! wiki_markdown_summary_has_inbody_citations "$tmp_quick_clean"; then
+        printf '%s\n' '## Citations' '' 'No citations found.' >"$tmp_citations"
+      else
+        : >"$tmp_citations"
+      fi
+
       {
         if wiki_markdown_frontmatter_only "$quickfile" | grep -q .; then
           wiki_markdown_frontmatter_only "$quickfile"
@@ -331,16 +409,23 @@ wiki_migrate_merge_quick_sources() {
           printf '%s\n' '---' 'type: source' 'status: draft' '---'
         fi
         echo
+        if [[ -s "$tmp_title" ]]; then cat "$tmp_title"; fi
+        if [[ -s "$tmp_source" ]]; then cat "$tmp_source"; fi
+        if [[ -s "$tmp_author" ]]; then cat "$tmp_author"; fi
+        echo
         echo '## Quick summary'
         echo
-        cat "$tmp_quick"
-        echo
-        printf '%s\n' '## Citations' '' 'No citations found.'
+        cat "$tmp_quick_clean"
+        if [[ -s "$tmp_citations" ]]; then
+          echo
+          cat "$tmp_citations"
+        fi
       } >"$tmp_out"
       mv "$tmp_out" "$main_file"
     fi
 
     rm -f "$tmp_quick" "$tmp_main" "$tmp_main_body" "$tmp_citations" "$tmp_out"
+    rm -f "$tmp_title" "$tmp_source" "$tmp_author" "$tmp_summary" "$tmp_quick_clean"
     rm -f "$quickfile"
   done
 

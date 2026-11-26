@@ -11,9 +11,8 @@
 
 ## What Lives Here
 
-- `sources/{author}/`: one-source summaries, grouped by author (mirrors `raw/sources/`)
-- `sources/{author}/`: one page per source (quick + full summary + citations)
-- `sources/reference/`: lightweight stubs for large corpora in `raw/reference/`
+- `sources/{author}/`: one page per source (title, attribution, quick summary, full summary, citations; mirrors `raw/sources/`)
+- `sources/reference/`: lightweight stubs for large corpora in `raw/reference/` (created on ingest, not at init)
 - `concepts/`: recurring ideas across sources
 - `entities/`: recurring named actors, companies, tools, people
 - `syntheses/`: comparisons, frameworks, assessments, filed answers

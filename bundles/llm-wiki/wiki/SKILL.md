@@ -1,4 +1,5 @@
 ---
+
 name: wiki
 description: >-
   Operate an LLM-maintained markdown wiki — init structure, migrate scaffold,

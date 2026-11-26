@@ -10,6 +10,7 @@ Periodically health-check the wiki for:
 - raw notes that should be promoted into the wiki
 - `raw/reference/` corpora missing a stub or index entry
 - reference stubs pointing at missing raw corpora
+- source pages with trailing `## Citations` / `No citations found.` while a non-empty citations or research block remains in the summary body (migrate artifact)
 
 Prepend lint passes to `wiki/log.md` per [log.md](../log.md).
 

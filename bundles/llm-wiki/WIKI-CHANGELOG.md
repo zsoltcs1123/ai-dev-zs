@@ -6,6 +6,8 @@ Consumer-facing operate layer notes. This file lives in the dev repo only. Init 
 
 - `wiki/log.md` is newest-first. Operate commands **prepend** entries; see `log.md`.
 - Playbook `1.4-to-1.5` adds the convention line and reverses legacy oldest-first logs.
+- Source-page section order documented consistently (`source-page.md`, `model.md`); scaffold no longer ships empty `wiki/sources/reference/`.
+- Playbook `1.3-to-1.4`: citations merge rule; mechanical merge matches unified layout (title → attribution → quick → summary → citations).
 
 ## 1.4
 

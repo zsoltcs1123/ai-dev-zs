@@ -41,9 +41,9 @@ scaffold: "1.5"
 
 Set `slug` from `--slug` or the target directory name. Set `scaffold` to the `metadata.version` value in this skill's `SKILL.md`.
 
-6. Customize `README.md` scope section with the wiki's center of gravity.
-7. Seed `wiki/log.md` from scaffold ([log.md](../log.md)): convention line plus a bootstrap entry with init date and slug.
-8. If host has `wikis/AGENTS.md`, append a registry row for the new wiki.
+1. Customize `README.md` scope section with the wiki's center of gravity.
+2. Seed `wiki/log.md` from scaffold ([log.md](../log.md)): convention line plus a bootstrap entry with init date and slug.
+3. If host has `wikis/AGENTS.md`, append a registry row for the new wiki.
 
 ## Flags
 

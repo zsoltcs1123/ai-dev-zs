@@ -48,7 +48,7 @@ Reference corpus stubs use `type: source` and `status: reference-corpus`. A stub
 
 Maintained knowledge base owned by the LLM.
 
-- `wiki/sources/{author}/`: source pages by author (mirror `raw/sources/`); each file is quick + full summary + citations per [source-page.md](source-page.md).
+- `wiki/sources/{author}/`: source pages by author (mirror `raw/sources/`); each file follows [source-page.md](source-page.md) (title, attribution, quick summary, full summary, citations).
 - `wiki/sources/reference/`: lightweight stubs for `raw/reference/` corpora
 - `wiki/concepts/`: durable ideas that accumulate evidence across sources
 - `wiki/entities/`: recurring named actors, tools, companies, frameworks, people
